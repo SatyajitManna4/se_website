@@ -21,6 +21,11 @@
             margin: 0;
             padding: 0;
         }
+   
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 
         /* FIX 1: Locks horizontal scroll & removes top gap */
         body {
@@ -38,14 +43,14 @@
            PREMIUM HERO SECTION
            ========================================= */
         /* FIX 2: Full bleed hero section */
-        .premium-profile-hero {
+        /* .premium-profile-hero {
             background: #0F172A !important;
             color: white !important;
             
-            /* Top padding slides perfectly under navbar */
+            
             padding: 140px 0 120px !important; 
             
-            /* Force absolute edge-to-edge width */
+          
             width: 100vw !important;
             max-width: 100vw !important;
             margin-left: calc(-50vw + 50%) !important;
@@ -55,7 +60,20 @@
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        } */
+
+            .premium-profile-hero {
+    background: #0F172A !important;
+    color: white !important;
+    padding: 140px 0 120px !important;
+
+    width: 100%;
+    max-width: 100%;
+
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
         /* Subtle glowing orb in the background */
         .hero-glow {

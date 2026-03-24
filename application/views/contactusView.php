@@ -56,7 +56,7 @@
     </div>
 </section> -->
 
-<section class="team-wrapper py-5">
+<section class="team-wrapper ">
     <div class="container py-5">
         <h2 class="section-title text-white title-light">Our Experts</h2>
         <div class="row g-4 justify-content-center mt-4">
