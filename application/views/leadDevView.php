@@ -106,17 +106,18 @@
             z-index: -1;
         }
 
-        .profile-photo-main {
+         .profile-photo-main {
             width: 100%;
             max-width: 320px;
-            height: 320px;
+            aspect-ratio: 1 / 1; /* FIX: Forces a perfect circle mathematically */
             object-fit: cover;
             border-radius: 50%;
             border: 6px solid #1e293b;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             transition: transform 0.4s ease;
+            display: block;
+            margin: 0 auto; /* Ensures it stays centered */
         }
-
         .profile-photo-main:hover {
             transform: translateY(-10px);
         }
@@ -316,7 +317,7 @@
 
                 <div class="col-lg-5 text-center">
                     <div class="profile-avatar-wrapper">
-                        <img src="<?= base_url() ?>assets/leadLogo.png" alt="Lead Web Developer" class="profile-photo-main">
+                        <img src="<?= base_url() ?>assets/leadLogo.jpeg" alt="Lead Web Developer" class="profile-photo-main">
                     </div>
                 </div>
 

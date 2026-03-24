@@ -32,7 +32,7 @@
                                 <i class="fas fa-search text-muted"></i>
                             </span>
                             <input type="text" class="form-control border-0 shadow-none search-main"
-                                placeholder="Search by Job Title, Skills, Keywords..." name="search" id="search">
+                                placeholder="Search by Job Title,Keywords..." name="search" id="search">
                             <button class="btn btn-primary search-btn-main" type="submit">
                                 Search Jobs
                             </button>

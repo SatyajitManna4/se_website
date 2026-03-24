@@ -10,7 +10,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <style>
        
@@ -24,7 +25,8 @@
             font-family: 'Inter', sans-serif !important;
             background-color: #F8FAFC !important;
             color: #475569 !important;
-            padding-top: 0px !important; /* FIX: Removed the 85px to kill the top gap */
+            padding-top: 0px !important;
+            /* FIX: Removed the 85px to kill the top gap */
             overflow-x: hidden !important;
         }
 
@@ -38,10 +40,10 @@
         .premium-ceo-hero {
             background: #0F172A !important;
             color: white !important;
-            
+
             /* FIX: Add top padding here so the dark background goes under the navbar */
-            padding: 120px 0 160px !important; 
-            
+            padding: 120px 0 160px !important;
+
             /* FIX: Force absolute edge-to-edge width to defeat any rogue global margins */
             /* width: 100vw !important;
             max-width: 100vw !important;
@@ -54,16 +56,14 @@
     position: relative;
     border-bottom: 1px solid rgba(255,255,255,0.05);
             margin-top: 0 !important;
-            border-radius: 0 !important; /* Kills the rogue rounded corners */
-            
+            border-radius: 0 !important;
+            /* Kills the rogue rounded corners */
+
             position: relative;
             overflow: hidden;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* .container, .row {
-    overflow-x: hidden;
-} */
         /* Subtle glowing orb in the background */
         .hero-glow {
             position: absolute;
@@ -74,7 +74,7 @@
     max-width: 100%;
     right: -20%;
             height: 800px;
-            background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, rgba(15,23,42,0) 70%);
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, rgba(15, 23, 42, 0) 70%);
             z-index: 1;
             pointer-events: none;
         }
@@ -92,7 +92,10 @@
         /* .ceo-avatar-wrapper::after {
             content: '';
             position: absolute;
-            top: 20px; left: -20px; right: 20px; bottom: -20px;
+            top: 20px;
+            left: -20px;
+            right: 20px;
+            bottom: -20px;
             border: 2px solid rgba(37, 99, 235, 0.4);
             border-radius: 30px;
             z-index: -1;
@@ -131,7 +134,8 @@
         .hero-subtitle {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #60A5FA; /* Bright Brand Blue */
+            color: #60A5FA;
+            /* Bright Brand Blue */
             margin-bottom: 25px;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -155,21 +159,21 @@
             font-size: 1.05rem;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             display: inline-flex;
             align-items: center;
         }
 
         .btn-premium-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             color: #1d4ed8 !important;
         }
 
         .btn-premium-outline {
             background: transparent;
             color: #FFFFFF !important;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             padding: 14px 35px;
             border-radius: 50px;
             font-weight: 700;
@@ -181,7 +185,7 @@
         }
 
         .btn-premium-outline:hover {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-color: #FFFFFF;
             transform: translateY(-3px);
         }
@@ -190,7 +194,8 @@
            FLOATING STATS SECTION
            ========================================= */
         .stats-wrapper {
-            margin-top: -80px; /* Pulls cards up over the hero background */
+            margin-top: -80px;
+            /* Pulls cards up over the hero background */
             position: relative;
             z-index: 10;
             margin-bottom: 80px;
@@ -203,7 +208,8 @@
             text-align: center;
             box-shadow: 0 15px 35px -5px rgba(15, 23, 42, 0.08);
             border: 1px solid #E2E8F0;
-            border-bottom: 4px solid #2563eb; /* Signature Brand Line */
+            border-bottom: 4px solid #2563eb;
+            /* Signature Brand Line */
             transition: transform 0.3s ease;
             height: 100%;
         }
@@ -319,21 +325,28 @@
                 text-align: center;
                 padding: 80px 0 140px;
             }
+
             .hero-description {
                 margin: 0 auto 40px;
             }
+
             .ceo-avatar-wrapper {
                 margin-bottom: 50px;
             }
+
             .ceo-avatar-wrapper::after {
-                display: none; /* Hide decorative offset border on mobile */
+                display: none;
+                /* Hide decorative offset border on mobile */
             }
+
             .btn-wrapper {
                 justify-content: center;
             }
+
             .stats-wrapper {
                 margin-top: -60px;
             }
+
             .about-image-secondary {
                 margin-top: 40px;
                 height: 400px;
@@ -344,15 +357,19 @@
             .stat-card {
                 margin-bottom: 20px;
             }
+
             .stats-wrapper {
                 margin-bottom: 40px;
             }
+
             .about-feature-card {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
             }
-            .btn-premium-primary, .btn-premium-outline {
+
+            .btn-premium-primary,
+            .btn-premium-outline {
                 width: 100%;
                 justify-content: center;
                 margin-bottom: 10px;
@@ -367,16 +384,17 @@
         <div class="hero-glow"></div>
         <div class="container hero-content-wrapper">
             <div class="row align-items-center flex-column-reverse flex-lg-row g-5">
-                
+
                 <div class="col-lg-7">
                     <h1 class="hero-title">Surajit Das</h1>
                     <h2 class="hero-subtitle">Founder </h2>
                     <p class="hero-description">
-                        Principal Architect of Scalable Enterprise Solutions with over a decade of experience building robust, high-availability systems for global businesses.
+                        Principal Architect of Scalable Enterprise Solutions with over a decade of experience building
+                        robust, high-availability systems for global businesses.
                     </p>
-                    
+
                     <div class="d-flex flex-column flex-sm-row gap-3 btn-wrapper">
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=suropriyo@gmail.com" target="_blank" class="btn-premium-primary">
+                        <a href="#" onclick="openMail(event)" target="_blank" class="btn-premium-primary">
                             <i class="fas fa-envelope me-2"></i> Let's Connect
                         </a>
                         <a href="<?= base_url() ?>ContactUs#contactForm" class="btn-premium-outline">
@@ -427,13 +445,16 @@
     <section class="about-section" id="about">
         <div class="container">
             <div class="row g-5 align-items-center">
-                
+
                 <div class="col-lg-6">
                     <h2 class="section-title">Visionary Leader in Software Engineering</h2>
                     <p class="about-text">
-                        Surajit Das is the driving force behind Suropriyo Enterprise’s mission to deliver high-performance software that transforms business operations. With profound expertise in enterprise systems, he specializes in high-availability architecture, custom full-stack development, and rapid deployment frameworks that deliver measurable results within weeks.
+                        Surajit Das is the driving force behind Suropriyo Enterprise’s mission to deliver
+                        high-performance software that transforms business operations. With profound expertise in
+                        enterprise systems, he specializes in high-availability architecture, custom full-stack
+                        development, and rapid deployment frameworks that deliver measurable results within weeks.
                     </p>
-                    
+
                     <div class="row g-4">
                         <div class="col-md-12">
                             <div class="about-feature-card">
@@ -442,7 +463,8 @@
                                 </div>
                                 <div class="feature-text">
                                     <h5>Award-Winning Innovator</h5>
-                                    <p>Recognized by TechAsia for Excellence in Software Leadership and Technical Strategy.</p>
+                                    <p>Recognized by TechAsia for Excellence in Software Leadership and Technical
+                                        Strategy.</p>
                                 </div>
                             </div>
                         </div>
@@ -453,7 +475,8 @@
                                 </div>
                                 <div class="feature-text">
                                     <h5>Rapid Deployment Expert</h5>
-                                    <p>Specialist in 2-week agile implementations for complex enterprise infrastructures.</p>
+                                    <p>Specialist in 2-week agile implementations for complex enterprise
+                                        infrastructures.</p>
                                 </div>
                             </div>
                         </div>
@@ -461,7 +484,8 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <img src="<?= base_url() ?>assets/ceo.png" alt="Surajit Das Workspace" class="about-image-secondary">
+                    <img src="<?= base_url() ?>assets/ceo.png" alt="Surajit Das Workspace"
+                        class="about-image-secondary">
                 </div>
 
             </div>
@@ -469,6 +493,21 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openMail(e) {
+            e.preventDefault();
 
+            var isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // Open Gmail app / default mail app
+                window.location.href = "mailto:suropriyoenterprise@gmail.com";
+            } else {
+                // Open Gmail web in browser
+                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com", "_blank");
+            }
+        }
+    </script>
 </body>
+
 </html>

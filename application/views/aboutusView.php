@@ -178,9 +178,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <div class="modal-footer border-0 pt-2 pb-4 justify-content-center gap-3">
                     <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancel</button>
-                    <a id="modalProductLink" href="#" target="_blank" class="btn btn-save-action">
+                    <!-- <a id="modalProductLink" href="#" target="_blank" class="btn btn-save-action">
                         Visit Product
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>

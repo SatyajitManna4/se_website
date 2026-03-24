@@ -26,24 +26,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <h6 class="text-uppercase fw-bold mb-4">Explore</h6>
                     <p><a href="<?= base_url('AboutUs') ?>" class="text-reset text-decoration-none">About Us</a>
                     </p>
-                    <p><a href="<?= base_url('Services') ?>"
-                            class="text-reset text-decoration-none">Services</a></p>
+                    <p><a href="<?= base_url('Services') ?>" class="text-reset text-decoration-none">Services</a></p>
                     <p><a href="<?= base_url('Careers') ?>" class="text-reset text-decoration-none">Careers</a>
                     </p>
                 </div>
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">Solutions</h6>
                     <!-- <p><a href="#" class="text-reset text-decoration-none">Healthcare Systems</a></p> -->
-                    <p><a href="<?= base_url('AboutUs#solutions') ?>" class="text-reset text-decoration-none">Tea Heaven</a></p>
-                    <p><a href="<?= base_url('AboutUs#solutions') ?>" class="text-reset text-decoration-none">Enterprise Infrastructure</a></p>
+                    <p><a href="<?= base_url() ?>AboutUs#solutions" class="text-reset text-decoration-none">Tea
+                            Heaven</a></p>
+                    <p><a href="<?= base_url() ?>AboutUs#solutions" class="text-reset text-decoration-none">E-commerce website</a></p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                     <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
 
                     <p>
                         <i class="fas fa-envelope me-3"></i>
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com" target="_blank"
-                            class="text-reset text-decoration-none">
+                        <a href="#" onclick="openMail(event)" class="text-reset text-decoration-none">
                             suropriyoenterprise@gmail.com
                         </a>
                     </p>
@@ -63,4 +62,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         Rights Reserved |
         <span class="ai-badge" style="font-size: 0.8rem; padding: 6px 18px;">🛠️ Built by Engineers</span>
     </div>
+    <script>
+        function openMail(e) {
+            e.preventDefault();
+
+            var isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // Open Gmail app / default mail app
+                window.location.href = "mailto:suropriyoenterprise@gmail.com";
+            } else {
+                // Open Gmail web in browser
+                window.open("https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com", "_blank");
+            }
+        }
+    </script>
 </footer>
