@@ -13,9 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* =========================================
-           GLOBAL RESETS (NO HEADER/FOOTER CSS)
-           ========================================= */
+       
         * {
             box-sizing: border-box;
             margin: 0;
@@ -30,9 +28,13 @@
             overflow-x: hidden !important;
         }
 
-        /* =========================================
-           PREMIUM HERO SECTION
-           ========================================= */
+         
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+        
         .premium-ceo-hero {
             background: #0F172A !important;
             color: white !important;
@@ -41,9 +43,16 @@
             padding: 120px 0 160px !important; 
             
             /* FIX: Force absolute edge-to-edge width to defeat any rogue global margins */
-            width: 100vw !important;
+            /* width: 100vw !important;
             max-width: 100vw !important;
-            margin-left: calc(-50vw + 50%) !important;
+            margin-left: calc(-50vw + 50%) !important; */
+            background: #0F172A !important;
+    color: white !important;
+    padding: 120px 0 160px !important;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
             margin-top: 0 !important;
             border-radius: 0 !important; /* Kills the rogue rounded corners */
             
@@ -51,12 +60,19 @@
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+
+        /* .container, .row {
+    overflow-x: hidden;
+} */
         /* Subtle glowing orb in the background */
         .hero-glow {
             position: absolute;
             top: -20%;
-            right: -10%;
-            width: 800px;
+            /* right: -10%;
+            width: 800px; */
+             width: 500px;
+    max-width: 100%;
+    right: -20%;
             height: 800px;
             background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, rgba(15,23,42,0) 70%);
             z-index: 1;
@@ -73,14 +89,21 @@
             display: inline-block;
         }
 
-        .ceo-avatar-wrapper::after {
+        /* .ceo-avatar-wrapper::after {
             content: '';
             position: absolute;
             top: 20px; left: -20px; right: 20px; bottom: -20px;
             border: 2px solid rgba(37, 99, 235, 0.4);
             border-radius: 30px;
             z-index: -1;
-        }
+        } */
+
+            .ceo-avatar-wrapper::after {
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
         .ceo-photo-main {
             width: 100%;
@@ -282,6 +305,11 @@
             box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
             border: 1px solid #E2E8F0;
         }
+        /* img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+} */
 
         /* =========================================
            MOBILE RESPONSIVENESS

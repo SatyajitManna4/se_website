@@ -38,14 +38,14 @@
            PREMIUM HERO SECTION
            ========================================= */
         /* FIX 2: Full bleed hero section */
-        .premium-profile-hero {
+        /* .premium-profile-hero {
             background: #0F172A !important;
             color: white !important;
             
-            /* Top padding slides perfectly under navbar */
+           
             padding: 140px 0 120px !important; 
             
-            /* Force absolute edge-to-edge width */
+         
             width: 100vw !important;
             max-width: 100vw !important;
             margin-left: calc(-50vw + 50%) !important;
@@ -55,19 +55,40 @@
             position: relative;
             overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
+        } */
+
+            .premium-profile-hero {
+    background: #0F172A !important;
+    color: white !important;
+    padding: 140px 0 120px !important;
+
+    width: 100%;
+    max-width: 100%;
+
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
         /* Subtle glowing orb in the background */
         .hero-glow {
-            position: absolute;
+            /* position: absolute;
             top: -20%;
             right: -10%;
             width: 800px;
             height: 800px;
             background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, rgba(15,23,42,0) 70%);
             z-index: 1;
-            pointer-events: none;
-        }
+            pointer-events: none; */
+            
+    position: absolute;
+    top: -20%;
+    right: -30%;
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+}
+        
 
         .hero-content-wrapper {
             position: relative;
@@ -80,13 +101,21 @@
         }
 
         .profile-avatar-wrapper::after {
-            content: '';
+            /* content: '';
             position: absolute;
             top: 15px; left: -15px; right: 15px; bottom: -15px;
             border: 2px solid rgba(37, 99, 235, 0.4);
             border-radius: 50%;
-            z-index: -1;
+            z-index: -1; */
+              top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
         }
+        .row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 
         .profile-photo-main {
             width: 100%;
