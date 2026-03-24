@@ -2,8 +2,10 @@
 
 <link rel="stylesheet" href="<?= base_url(); ?>css/Contact.css">
 
-<div class="banner-container" style="margin-top: 85px; position: relative; z-index: 1;"> 
-    <img id="banner" src="<?= base_url(); ?>assets/banner_technologices.png" alt="Technologies Banner" class="img-fluid w-100 object-fit-cover" style="max-height: 400px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);">
+<div class="banner-container" style="margin-top: 85px; position: relative; z-index: 1;">
+    <img id="banner" src="<?= base_url(); ?>assets/banner_technologices.png" alt="Technologies Banner"
+        class="img-fluid w-100 object-fit-cover"
+        style="max-height: 400px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);">
 </div>
 
 <!-- <section class="py-5 bg-light-soft" style="position: relative; z-index: 2;">
@@ -58,7 +60,7 @@
     <div class="container py-5">
         <h2 class="section-title text-white title-light">Our Experts</h2>
         <div class="row g-4 justify-content-center mt-4">
-            
+
             <div class="col-12 col-md-6 col-lg-4 d-flex">
                 <div class="premium-card w-100 h-100 d-flex flex-column">
                     <div class="card-img-wrapper">
@@ -66,8 +68,10 @@
                     </div>
                     <div class="card-body p-4 p-xl-5 d-flex flex-column flex-grow-1">
                         <h4 class="card-title">Founder</h4>
-                        <p class="card-text flex-grow-1">Bringing 10+ years of enterprise experience in PHP, Laravel, and SQL to lead complex software development projects from conception to delivery.</p>
-                        <a href="<?= base_url() ?>ContactUs/Ceo" class="btn btn-outline-primary btn-premium-outline mt-4">View Profile</a>
+                        <p class="card-text flex-grow-1">Bringing 10+ years of enterprise experience in PHP, Laravel,
+                            and SQL to lead complex software development projects from conception to delivery.</p>
+                        <a href="<?= base_url() ?>ContactUs/Ceo"
+                            class="btn btn-outline-primary btn-premium-outline mt-4">View Profile</a>
                     </div>
                 </div>
             </div>
@@ -79,8 +83,10 @@
                     </div>
                     <div class="card-body p-4 p-xl-5 d-flex flex-column flex-grow-1">
                         <h4 class="card-title">Lead Web Developer</h4>
-                        <p class="card-text flex-grow-1">Expert in building highly responsive and scalable enterprise web solutions with over a decade of hands-on experience in PHP and Laravel frameworks.</p>
-                        <a href="<?= base_url() ?>ContactUs/LeadDev" class="btn btn-outline-primary btn-premium-outline mt-4">View Profile</a>
+                        <p class="card-text flex-grow-1">Expert in building highly responsive and scalable enterprise
+                            web solutions with over a decade of hands-on experience in PHP and Laravel frameworks.</p>
+                        <a href="<?= base_url() ?>ContactUs/LeadDev"
+                            class="btn btn-outline-primary btn-premium-outline mt-4">View Profile</a>
                     </div>
                 </div>
             </div>
@@ -92,8 +98,10 @@
                     </div>
                     <div class="card-body p-4 p-xl-5 d-flex flex-column flex-grow-1">
                         <h4 class="card-title">DevOps Engineer</h4>
-                        <p class="card-text flex-grow-1">Specializes in CI/CD pipelines and infrastructure management, ensuring zero-downtime updates and enterprise-grade security for PHP-based software.</p>
-                        <a href="<?= base_url() ?>ContactUs/DevOps" class="btn btn-outline-primary btn-premium-outline mt-4">View Profile</a>
+                        <p class="card-text flex-grow-1">Specializes in CI/CD pipelines and infrastructure management,
+                            ensuring zero-downtime updates and enterprise-grade security for PHP-based software.</p>
+                        <a href="<?= base_url() ?>ContactUs/DevOps"
+                            class="btn btn-outline-primary btn-premium-outline mt-4">View Profile</a>
                     </div>
                 </div>
             </div>
@@ -104,55 +112,63 @@
 
 <section class="container py-5 mt-4">
     <div class="row g-5 align-items-stretch">
-        
+
         <div class="col-lg-6">
             <div class="premium-contact-box p-4 p-md-5 h-100" id="contactForm">
-                <h3 class="mb-4 form-title"  >Get in Touch</h3>
+                <h3 class="mb-4 form-title">Get in Touch</h3>
                 <?= form_open("ContactUs") ?>
-                    <div class="mb-4">
-                        <label class="form-label premium-label">Name</label>
-                        <input type="text" name="name" class="form-control premium-input" placeholder="Enter your name" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label premium-label">Email</label>
-                        <input type="email" name="email" class="form-control premium-input" placeholder="name@example.com" required>
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label premium-label">Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-control premium-input" placeholder="How can we help?">
-                    </div>
-                    <div class="mb-5">
-                        <label class="form-label premium-label">Message</label>
-                        <textarea name="message" class="form-control premium-input" rows="4" placeholder="Your message here..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-premium w-100 py-3">
-                        <i class="fas fa-paper-plane me-2"></i> Send Message
-                    </button>
+                <div class="mb-4">
+                    <label class="form-label premium-label">Name</label>
+                    <input type="text" name="name" class="form-control premium-input" placeholder="Enter your name"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label premium-label">Email</label>
+                    <input type="email" name="email" class="form-control premium-input" placeholder="name@example.com"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label premium-label">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control premium-input"
+                        placeholder="How can we help?">
+                </div>
+                <div class="mb-5">
+                    <label class="form-label premium-label">Message</label>
+                    <textarea name="message" class="form-control premium-input" rows="4"
+                        placeholder="Your message here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-premium w-100 py-3">
+                    <i class="fas fa-paper-plane me-2"></i> Send Message
+                </button>
                 <?= form_close() ?>
             </div>
         </div>
 
         <div class="col-lg-6 d-flex flex-column gap-4">
             <div class="premium-map-wrapper flex-grow-1">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117925.334399277!2d88.26495021200544!3d22.53542731853625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117925.334399277!2d88.26495021200544!3d22.53542731853625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f882db4908f667%3A0x43e330e68f6c2cbc!2sKolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
-            
+
             <div class="premium-address-box p-4 p-md-5">
-                <h4 class="address-title mb-4"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Office Address</h4>
-                
+                <h4 class="address-title mb-4"><i class="fas fa-map-marker-alt me-2 text-primary"></i> Office Address
+                </h4>
+
                 <div class="contact-detail-row">
                     <div class="contact-icon"><i class="fas fa-city"></i></div>
                     <span class="contact-text">Kolkata, West Bengal, India</span>
                 </div>
-                
+
                 <div class="contact-detail-row">
                     <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                    <a href="tel:+918981174517" class="contact-text contact-link">+91 89811 74517</a>
+                    <a href="tel:+918777270124" class="contact-text contact-link">+91 87772 70124</a>
                 </div>
-                
+
                 <div class="contact-detail-row">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <a href="mailto:suropriyo@gmail.com" class="contact-text contact-link">suropriyo@gmail.com</a>
+                    <a href="#" onclick="openMail(event)"
+                        class="contact-text contact-link">suropriyoenterprise@gmail.com</a>
                 </div>
             </div>
         </div>
@@ -164,9 +180,10 @@
     <div class="row justify-content-center mb-5">
         <div class="col-lg-8 text-center">
             <h2 class="section-title text-white title-light">Client Testimonials</h2>
-            
+
             <p class="lead text-white opacity-75 mt-4 px-md-5">
-                At SUROPRIYO ENTERPRISE, we pride ourselves on delivering high-performance PHP and Laravel solutions. Our commitment to clean code and scalable architecture is reflected in the success of our clients.
+                At SUROPRIYO ENTERPRISE, we pride ourselves on delivering high-performance PHP and Laravel solutions.
+                Our commitment to clean code and scalable architecture is reflected in the success of our clients.
             </p>
         </div>
     </div>
@@ -176,11 +193,11 @@
             <div class="col-12 col-md-6 col-lg-4 d-flex">
                 <div class="premium-testimonial-card p-4 p-xl-5 w-100 d-flex flex-column">
                     <i class="fas fa-quote-right giant-bg-quote-tsm"></i>
-                    
+
                     <div class="testimonial-avatar-wrapper mb-4">
                         <img src="<?= base_url(); ?>assets/<?= $tsm->setsm_img ?>" alt="<?= $tsm->setsm_name ?>" />
                     </div>
-                    
+
                     <h4 class="testimonial-name"><?= $tsm->setsm_name ?></h4>
                     <span class="testimonial-role"><?= $tsm->setsm_designation ?></span>
 
@@ -198,5 +215,19 @@
         <?php } ?>
     </div>
 </section>
+<script>
+    function openMail(e) {
+        e.preventDefault();
 
+        var isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // Open Gmail app / default mail app
+            window.location.href = "mailto:suropriyoenterprise@gmail.com";
+        } else {
+            // Open Gmail web in browser
+            window.open("https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com", "_blank");
+        }
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
