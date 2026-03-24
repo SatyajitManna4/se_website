@@ -293,3 +293,37 @@ body {
     font-size: 0.9rem;
     letter-spacing: 2px;
 }
+@media (max-width: 768px) {
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    /* Reduce padding on mobile so content isn't too squeezed */
+    .premium-contact-box, 
+    .premium-address-box, 
+    .premium-testimonial-card {
+        padding: 30px 20px !important;
+        border-radius: 16px;
+    }
+
+    .premium-map-wrapper {
+        min-height: 250px !important;
+        border-radius: 16px;
+        margin-bottom: 10px;
+    }
+
+    .contact-detail-row {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .contact-text {
+        font-size: 0.95rem;
+        word-break: break-all; /* Prevents long emails from breaking layout */
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+}

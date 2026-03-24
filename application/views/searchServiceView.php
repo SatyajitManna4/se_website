@@ -9,7 +9,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <style>
         /* =========================================
@@ -24,7 +25,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8FAFC ;
+            background-color: #F8FAFC;
             color: #475569;
             padding-top: 85px;
             /* Keeps your navbar spacing */
@@ -316,12 +317,12 @@
                                 </ul>
 
                                 <div class="mt-auto pt-3">
-                                    <?= form_open('Services/ServiceDescription') ?>
-                                    <input type="hidden" name="serv_id" value="<?= $serv->sesrv_id ?>" />
-                                    <button type="submit" class="service-btn">
-                                        Learn More <i class="fas fa-arrow-right ms-2"></i>
-                                    </button>
-                                    <?= form_close() ?>
+                                    <div class="mt-auto pt-3">
+                                        <a href="<?= base_url('Services/ServiceDescription/' . $serv->sesrv_id) ?>"
+                                            class="service-btn text-decoration-none">
+                                            Learn More <i class="fas fa-arrow-right ms-2"></i>
+                                        </a>
+                                    </div>
                                 </div>
 
                             </div>

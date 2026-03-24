@@ -51,34 +51,58 @@ class Services extends CI_Controller
 
     }
 
-    function ServiceDescription()
-    {
-        $query = $this->input->post();
+    // function ServiceDescription()
+    // {
+    //     $query = $this->input->post();
 
-        if (isset($query['serv_id'])) {
-            $this->load->model('ServicesModel');
+    //     if (isset($query['serv_id'])) {
+    //         $this->load->model('ServicesModel');
 
-            $list  = $this -> ServicesModel -> get_service_by_id($query['serv_id']);
+    //         $list  = $this -> ServicesModel -> get_service_by_id($query['serv_id']);
 
-            $data = array (
-                'serv' => $list
-            );
+    //         $data = array (
+    //             'serv' => $list
+    //         );
 
-            $this->load->view('headerView');
-            $this->load->view('serviceDescriptionView', $data);
-            $this->load->view('footerView');
-        }else{
-            redirect('Services');
-        }
+    //         $this->load->view('headerView');
+    //         $this->load->view('serviceDescriptionView', $data);
+    //         $this->load->view('footerView');
+    //     }else{
+    //         redirect('Services');
+    //     }
 
-    }
+    // }
 
     // function Technologies(){
     //     $this->load->view('headerView');
     //     $this->load->view('technologiesView');
     //     $this->load->view('footerView');
     // }
+    // Services.php
 
+public function ServiceDescription($serv_id = NULL)
+{
+    // If ID isn't in the URL, check if it was sent via POST (for backward compatibility)
+    if ($serv_id === NULL) {
+        $serv_id = $this->input->post('serv_id');
+    }
+
+    if ($serv_id) {
+        $this->load->model('ServicesModel');
+        $list = $this->ServicesModel->get_service_by_id($serv_id);
+
+        if ($list) {
+            $data = array('serv' => $list);
+            $this->load->view('headerView');
+            $this->load->view('serviceDescriptionView', $data);
+            $this->load->view('footerView');
+        } else {
+            redirect('Services');
+        }
+    } else {
+        redirect('Services');
+    }
+}
 }
 
 ?>
