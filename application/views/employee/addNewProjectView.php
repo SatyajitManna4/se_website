@@ -87,11 +87,7 @@
                             <input type="text" class="form-control" id="projectHead" name="projectHead"
                                 placeholder="Enter Project Head Name" required>
                         </div>
-                        <!-- <div class="form-group">
-                            <label class="form-label">Head Employee ID <span class="required">*</span></label>
-                            <input type="text" class="form-control" id="headEmpId" name="headEmpId"
-                                placeholder="Enter Head Employee ID" required>
-                        </div> -->
+                      
                         <div class="form-group">
                             <label class="form-label">Price (₹) <span class="required">*</span></label>
                             <input type="text" class="form-control" id="price" name="price" placeholder="12.5L"
