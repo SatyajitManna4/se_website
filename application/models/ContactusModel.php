@@ -52,7 +52,7 @@ class ContactusModel extends CI_Model
         $this->email->set_newline("\r\n");
 
         // Send confirmation to person who contacted
-        $this->email->from('satyajitmanna35@gmail.com', 'Suropriyo Enterprise');
+        $this->email->from('hr@suropriyo.in', 'Suropriyo Enterprise');
         $this->email->to($contact_data['email']);
         $this->email->cc('');
         $this->email->bcc('');
@@ -76,8 +76,8 @@ class ContactusModel extends CI_Model
             'contact_date' => date('Y-m-d H:i:s')
         );
         // Admin email
-        $this->email->from('satyajitmanna35@gmail.com', 'Suropriyo Enterprise');
-        $this->email->to('satyajitmanna2024@gmail.com'); 
+        $this->email->from('hr@suropriyo.in', 'Suropriyo Enterprise');
+        $this->email->to('suropriyoenterprise@gmail.com'); 
         $this->email->cc('');
         $this->email->bcc('');
         $this->email->subject('Suropriyo Enterprise - New Contact Form Submission');

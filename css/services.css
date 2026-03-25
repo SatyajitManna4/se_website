@@ -138,11 +138,11 @@ body {
 }
 
 .hero-subtitle {
-	color: #94a3b8 !important;
-	font-size: 1.15rem;
-	line-height: 1.7;
+    color: #94a3b8 !important;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 0 !important; /* Removes space below text since button is gone */
 }
-
 .hero-image-wrapper {
 	position: relative;
 	z-index: 2;
@@ -410,17 +410,17 @@ body {
 	margin: 0;
 }
 
-/* =========================================
-           MOBILE RESPONSIVENESS
-           ========================================= */
+ 
+           /* MOBILE RESPONSIVENESS */
+ 
 @media (max-width: 991px) {
-	.premium-hero {
-		padding: 120px 0 80px !important;
-		text-align: center;
-	}
-	.hero-content {
-		margin-bottom: 40px;
-	}
+    .premium-hero {
+        padding: 120px 0 60px !important; /* Slightly reduced bottom padding */
+        text-align: center;
+    }
+    .hero-content {
+        margin-bottom: 10px !important; /* Reduced from 40px to 10px */
+    }
 }
 
 @media (max-width: 768px) {

@@ -235,7 +235,7 @@ body {
 .job-meta-bottom {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #192331;
 }
 
 .btn-apply {
@@ -247,6 +247,7 @@ body {
   padding: 10px 24px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+
 }
 
 .btn-apply:hover {
@@ -358,7 +359,7 @@ body {
 
     /* Buttons full width */
     .btn-apply {
-      width: 100%;
+      width:85%;
       font-size: 0.85rem;
       padding: 8px;
     }

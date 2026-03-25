@@ -18,11 +18,12 @@
     <section class="premium-hero">
         <div class="container">
             <div class="row align-items-center g-5">
-                <div class="col-lg-6 hero-content text-center text-lg-start">
+                <!-- Remove margin bottom from hero content -->
+               <div class="col-lg-6 hero-content text-center text-lg-start mb-0">
                     <span class="premium-hero-badge mb-3">Our Expertise</span>
                     <h1 class="hero-title">Amazing Services Await</h1>
                     <p class="hero-subtitle">Discover premium services designed to transform your business. Our expert team is ready to help you scale.</p>
-                    <a href="<?= base_url(); ?>Services#ourServices" class="btn-premium mt-3">Explore Services</a>
+                    <!-- <a href="<?= base_url(); ?>Services#ourServices" class="btn-premium mt-3">Explore Services</a> -->
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image-wrapper">
@@ -72,10 +73,7 @@
                                 <?php } ?>
                             </ul>
                             
-                            <?= form_open('Services/ServiceDescription')?>
-                            <input type="hidden" name="serv_id" value="<?= $srv->sesrv_id ?>"/>
-                            <button type="submit" class="btn btn-light text-primary fw-bold rounded-pill w-100 mt-3">Learn More</button>
-                            <?= form_close() ?>
+                            <a href="<?= base_url() ?>Services/Searchservice" class="btn btn-light text-primary fw-bold rounded-pill w-100 mt-3">Learn More &rarr;</a>
                         </div>
                         
                     </div>

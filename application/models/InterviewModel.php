@@ -29,7 +29,7 @@ class InterviewModel extends CI_Model
             'hr_name' => $hr_name
         );
 
-        $this->email->from('satyajitmanna35@gmail.com', 'Suropriyo Enterprise');
+        $this->email->from('hr@suropriyo.in', 'Suropriyo Enterprise');
         $this->email->to($email);
         $this->email->subject('Interview Invitation - Suropriyo Enterprise');
         $this->email->message($this->load->view('email/interview_invitation', $data, TRUE));
@@ -52,7 +52,7 @@ class InterviewModel extends CI_Model
             'hr_name' => $hr_name
         );
 
-        $this->email->from('satyajitmanna35@gmail.com', 'Suropriyo Enterprise');
+        $this->email->from('hr@suropriyo.in', 'Suropriyo Enterprise');
         $this->email->to('eshitasen07@gmail.com'); // HR email
         $this->email->subject('Interview Scheduled - Suropriyo Enterprise');
         $this->email->message($this->load->view('email/interview_hr_notification', $admindata, TRUE));

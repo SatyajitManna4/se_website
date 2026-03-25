@@ -77,6 +77,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <p>
                                 Best Regards,<br>
                                 <?= htmlspecialchars($hr_name) ?><br>
+                                <a href="mailto:eshitasen07@gmail.com"
+                                    style="color:#3b82f6;text-decoration:none;font-weight:500;">eshitasen07@gmail.com</a><br>
                                 Suropriyo Enterprise
                             </p>
 

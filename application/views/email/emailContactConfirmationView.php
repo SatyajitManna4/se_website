@@ -95,10 +95,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         </p>
                                         <p style="color:#6b7280;font-size:14px;margin:0;">
                                             Call us: <a href="tel:+91 89811 74517"
-                                                style="color:#3b82f6;text-decoration:none;font-weight:500;">+91 89811
-                                                74517</a><br>
-                                            Email us: <a href="mailto:suropriyo@gmail.com"
-                                                style="color:#3b82f6;text-decoration:none;font-weight:500;">suropriyo@gmail.com</a>
+                                                style="color:#3b82f6;text-decoration:none;font-weight:500;">+91 87772 70124</a><br>
+                                            Email us: <a href="mailto:suropriyoenterprise@gmail.com"
+                                                style="color:#3b82f6;text-decoration:none;font-weight:500;">suropriyoenterprise@gmail.com</a>
                                         </p>
                                     </td>
                                 </tr>

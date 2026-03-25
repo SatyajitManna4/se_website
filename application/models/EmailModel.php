@@ -18,7 +18,7 @@ class EmailModel extends CI_Model
         $this->email->set_newline("\r\n");
         
         // Applicant Email
-        $this->email->from('satyajitmanna35@gmail.com', 'Suropriyo Enterprise');
+        $this->email->from('hr@suropriyo.in', 'Suropriyo Enterprise');
         $this->email->to($email);
         $this->email->cc('');
         $this->email->bcc('');
@@ -31,6 +31,7 @@ class EmailModel extends CI_Model
         $this->email->subject('Suropriyo Enterprise - Application Received.');
         $this->email->message($this->load->view('email/emailApplicantView', $data, TRUE));
         $this->email->send();
+        echo $this->email->print_debugger();
 
         // Admin Email
         $admindata = array(
@@ -40,7 +41,7 @@ class EmailModel extends CI_Model
             'phone' => $phone
         );
 
-        $this->email->from('satyajitmanna35@gmail.com', 'Suropriyo Enterprise');
+        $this->email->from('hr@suropriyo.in', 'Suropriyo Enterprise');
         $this->email->to('eshitasen07@gmail.com');
         $this->email->cc('');
         $this->email->bcc('');
@@ -48,8 +49,9 @@ class EmailModel extends CI_Model
         $this->email->message($this->load->view('email/emailAdminView', $admindata, TRUE));
 
         $this->email->send();
+        echo $this->email->print_debugger();
         return 0;
     }
 }
 
-?> 
+?>
