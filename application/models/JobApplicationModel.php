@@ -1,6 +1,6 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class jobApplicationModel extends CI_Model
 {
@@ -12,7 +12,7 @@ class jobApplicationModel extends CI_Model
         return $query->row(); // Returns a single object instead of an array
     }
 
-    function register_applicant($apdata, $resume_path = '')
+    public function register_applicant($apdata, $resume_path = '')
     {
 
         if (trim($resume_path) == '') {
@@ -41,7 +41,7 @@ class jobApplicationModel extends CI_Model
         return $issuccess['code'];
     }
 
-    function get_applicant_info($sejobaid = '')
+    public function get_applicant_info($sejobaid = '')
     {
         if (trim($sejobaid) == '') {
             return [];
@@ -51,15 +51,29 @@ class jobApplicationModel extends CI_Model
         }
     }
 
-    function get_all_applicants()
-    {
-        return $this->db
-            ->order_by('sejoba_id', 'ASC')
-            ->get('sejobapplicant')
-            ->result();
-    }
+   public function get_all_applicants()
+{
+    // The "AS" keyword tricks the view into thinking nothing changed!
+    $this->db->select('
+        sejobapplicant.*, 
+        secandidates.full_name AS sejoba_name, 
+        secandidates.email AS sejoba_email, 
+        sejobs.sejob_jobtitle AS sejoba_position
+    ');
+    $this->db->from('sejobapplicant');
+    
+    // Link to Candidate table for Name and Email
+    $this->db->join('secandidates', 'sejobapplicant.candidate_id = secandidates.id', 'left');
+    
+    // Link to Jobs table for the exact Job Title
+    $this->db->join('sejobs', 'sejobapplicant.job_id = sejobs.sejob_id', 'left');
+    
+    $this->db->order_by('sejobapplicant.sejoba_atime', 'DESC');
+    
+    return $this->db->get()->result();
+}
 
-    function update_applicant_review($id, $status, $comment)
+    public function update_applicant_review($id, $status, $comment)
     {
 
         $data = array(
@@ -72,7 +86,7 @@ class jobApplicationModel extends CI_Model
     }
 
     // Step 2: Add interview scheduling function
-    function schedule_interview($applicant_id = '', $interview_data = array())
+   public function schedule_interview($applicant_id = '', $interview_data = array())
     {
         if (empty($applicant_id) || empty($interview_data)) {
             return ['code' => 1, 'message' => 'Invalid parameters'];
@@ -80,9 +94,9 @@ class jobApplicationModel extends CI_Model
 
         $this->db->trans_start();
 
-        // Update applicant with interview details and status
+        // FIXED: Changed state to 'interviewing' to match the database ENUM
         $update_data = array(
-            'sejoba_state' => 'interview_scheduled',
+            'sejoba_state' => 'interviewing', 
             'sejoba_interview_date' => $interview_data['date'] ?? null,
             'sejoba_interview_time' => $interview_data['time'] ?? null,
             'sejoba_interview_location' => $interview_data['location'] ?? null,
@@ -95,15 +109,14 @@ class jobApplicationModel extends CI_Model
 
         $this->db->trans_complete();
 
-        if ($this->db->trans_status() === FALSE) {
+        if ($this->db->trans_status() === false) {
             return ['code' => 1, 'message' => 'Failed to schedule interview'];
         } else {
             return ['code' => 0, 'message' => 'Interview scheduled successfully'];
         }
     }
-
     // Step 3: Add function to get scheduled interviews
-    function get_interview_scheduled_applicants()
+    public function get_interview_scheduled_applicants()
     {
         return $this->db
             ->where('sejoba_state', 'interview_scheduled')
@@ -120,12 +133,71 @@ class jobApplicationModel extends CI_Model
 
     public function get_recent_applicants($limit = 5)
     {
-        return $this->db->order_by('sejoba_atime', 'DESC')
-            ->limit($limit)
-            ->get('sejobapplicant')
-            ->result_array();
+        // Use a JOIN to fetch the Candidate's Name and the Job Title
+        $this->db->select('
+            sejobapplicant.*, 
+            secandidates.full_name AS sejoba_name, 
+            sejobs.sejob_jobtitle AS sejoba_position
+        ');
+        $this->db->from('sejobapplicant');
+        
+        // Link to Candidate table for the Name
+        $this->db->join('secandidates', 'sejobapplicant.candidate_id = secandidates.id', 'left');
+        
+        // Link to Jobs table for the exact Job Title
+        $this->db->join('sejobs', 'sejobapplicant.job_id = sejobs.sejob_id', 'left');
+        
+        $this->db->order_by('sejobapplicant.sejoba_atime', 'DESC');
+        $this->db->limit($limit);
+        
+        return $this->db->get()->result_array();
     }
+    // Submits the finalized application into the bridging table
+  public function submit_application($candidate_id, $job_id, $resume_path, $cover_letter, $phone, $experience, $expected_salary)
+{
+    $data = array(
+        'candidate_id' => $candidate_id,
+        'job_id' => $job_id,
+        'sejoba_phone' => $phone,               // NEW
+        'sejoba_experience' => $experience,     // NEW
+        'sejoba_exp_salary' => $expected_salary,// NEW
+        'sejoba_resume' => $resume_path,       
+        'sejoba_coverletter' => $cover_letter, 
+        'sejoba_state' => 'applied'            
+    );
+    return $this->db->insert('sejobapplicant', $data);
+}
+   public function is_eligible_to_apply($candidate_id, $job_id) // <-- Add $job_id here
+{
+    $this->db->where('candidate_id', $candidate_id);
+    $this->db->where('job_id', $job_id); 
+    return $this->db->get('sejobapplicant')->num_rows() == 0;
+}
+    /**
+         * Fetch all applications for a specific candidate joined with job details
+         * This is used to display the tracking list on the Candidate Dashboard.
+         */
+    public function get_applications_by_candidate($candidate_id)
+{
+    $this->db->select('
+        sejobapplicant.*, 
+        sejobs.sejob_jobtitle, 
+        sejobs.sejob_address,
+        secandidates.email as candidate_email
+    ');
+    $this->db->from('sejobapplicant');
 
+    // Link the application to the specific Job
+    $this->db->join('sejobs', 'sejobapplicant.job_id = sejobs.sejob_id', 'left');
+
+    // Link the application to the Candidate's main account info
+    $this->db->join('secandidates', 'sejobapplicant.candidate_id = secandidates.id', 'left');
+
+    $this->db->where('sejobapplicant.candidate_id', $candidate_id);
+    $this->db->order_by('sejobapplicant.sejoba_atime', 'DESC');
+
+    $query = $this->db->get();
+    return $query->result(); 
 }
 
-?>
+}
