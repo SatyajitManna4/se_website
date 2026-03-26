@@ -1,30 +1,100 @@
-<div class="row mb-4 align-items-center">
-    <div class="col-md-8">
-        <h2 class="fw-bold text-dark mb-1">Welcome back!</h2>
-        <p class="text-muted">Manage your profile and track your job applications here.</p>
-    </div>
-    <div class="col-md-4 text-md-end text-start">
-        <span class="badge bg-light text-dark border px-3 py-2 fs-6">
-            <i class="fas fa-envelope me-2 text-primary"></i> <?= htmlspecialchars($profile->email); ?>
-        </span>
+<style>
+/* ===== PREMIUM GLOBAL ===== */
+body {
+    background: #F1F5F9;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Glass effect card */
+.premium-card {
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: 0.3s ease;
+}
+
+.premium-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Header section */
+.welcome-box {
+    padding: 25px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    color: white;
+}
+
+/* Badge upgrade */
+.badge-premium {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50px;
+}
+
+/* Table upgrade */
+.table thead {
+    background: #f8fafc;
+}
+
+.table tbody tr {
+    transition: 0.2s;
+}
+
+.table tbody tr:hover {
+    background: #f1f5f9;
+}
+
+/* Status badges */
+.badge {
+    border-radius: 50px !important;
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Responsive fix */
+@media (max-width: 768px) {
+    .welcome-box {
+        text-align: center;
+    }
+}
+</style>
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="welcome-box d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+            <div>
+                <h2 class="fw-bold mb-1">Welcome back 👋</h2>
+                <p class="mb-0 opacity-75">Manage your profile and track your job applications</p>
+            </div>
+
+            <div class="mt-3 mt-md-0">
+                <span class="badge badge-premium px-3 py-2">
+                    <i class="fas fa-envelope me-2"></i>
+                    <?= htmlspecialchars($profile->email); ?>
+                </span>
+            </div>
+
+        </div>
     </div>
 </div>
 
 <div class="row">
     <div class="col-12">
-        <div class="card shadow-sm border-0 rounded-4">
+        <div class=" premium-card p-3">
             <div class="card-header bg-white border-bottom py-3">
                 <h5 class="mb-0 fw-bold"><i class="fas fa-briefcase text-primary me-2"></i> My Applications</h5>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle mb-0">
-                        <thead class="bg-light">
+                    <table class=" table align-middle mb-0">
+                        <thead>
                             <tr>
-                                <th class="px-4 py-3">Position</th>
-                                <th class="py-3">Date Applied</th>
-                                <th class="py-3">Status</th>
-                                <th class="py-3">Interview Details</th>
+                                <th class="px-4 py-3 text-muted small text-uppercase">Position</th>
+                                <th class="py-3 text-muted small text-uppercase">Date</th>
+                                <th class="py-3 text-muted small text-uppercase">Status</th>
+                                <th class="py-3 text-muted small text-uppercase">Interview</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -108,7 +178,7 @@
                         <label class="fw-bold text-muted small text-uppercase">Full Name *</label>
                         <input type="text" class="form-control" name="full_name"
                             value="<?= isset($profile->full_name) ? $profile->full_name : ''; ?>"
-                            <?= !empty($profile->full_name) ? 'readonly' : 'required'; ?>>
+                            <?= !empty($profile->full_name) ?   'required': 'required'; ?>>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label class="fw-bold text-muted small text-uppercase">Phone Number *</label>
@@ -122,7 +192,7 @@
                         <input type="number" class="form-control" name="experience" min="0" step="0.5" required>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="fw-bold text-muted small text-uppercase">Expected Salary (Annual) *</label>
+                        <label class="fw-bold text-muted small text-uppercase">Expected Salary (Monthly) *</label>
                         <div class="input-group">
                             <span class="input-group-text">₹</span>
                             <input type="number" class="form-control" name="expected_salary" required>

@@ -186,6 +186,7 @@ function openMail(e) {
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- add jQuery for remove the url #contactFrom  -->
 <script>
 $(document).ready(function() {
 

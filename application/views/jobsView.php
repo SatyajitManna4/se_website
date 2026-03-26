@@ -153,7 +153,7 @@
                                     <i class="fas fa-code text-primary"></i> <?= $job->sejob_skills ?>
                                 </span>
                                 <span class="premium-badge-soft">
-                                    <span class="text-success fw-bold">₹</span>
+                                    <span class="text-success fw-bold">upto</span>
                                     <?= number_format($job->sejob_salary) ?>/mo
                                 </span>
                                 <span class="premium-badge-soft">
