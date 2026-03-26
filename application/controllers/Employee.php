@@ -264,87 +264,45 @@ class Employee extends CI_Controller
         }
     }
 
-    // AdminAttendence and also hr attendance
-    // function viewAttendance()
-    // {
-    //     $access = $this->session->userdata('accesslevel');
-    //     // Ensure both ADMIN and HR can access
-    //     if ($this->session->userdata('status') == 'active' && ($access == 'ADMIN' || $access == 'HR')) {
-
-    //         $this->load->model('AttendanceModel');
-    //         $this->load->model('EmployeeModel');
-
-    //         $empid_session = $this->session->userdata('empid');
-
-    //         // 1. ALWAYS fetch today's attendance for the logged-in user for the top card
-    //         $data['todayAttendance'] = $this->AttendanceModel->get_today_login_logout($empid_session);
-
-    //         $postd = $this->input->post();
-    //         if ($postd) {
-    //             $postdata = $this->security->xss_clean($postd);
-    //             $s_id = trim($postdata['searchempid'] ?? '');
-    //             $start = $postdata['startdate'] ?? '';
-    //             $end = $postdata['enddate'] ?? '';
-    //             // Search logic
-    //             $list = $this->AttendanceModel->find_empid_with_daterange($s_id, $start, $end);
-    //         } else {
-    //             // 2. DEFAULT: Load all attendance logs for the table on initial load
-    //             $list = $this->AttendanceModel->get_attendance_of_all_employee();
-    //         }
-
-    //         $data['atten'] = $list;
-
-    //         // 3. Load the correct header based on role
-    //         $header = ($access == 'HR') ? 'hr/hrHeaderView' : 'employee/adminHeaderView';
-
-    //         $this->load->view($header);
-    //         $this->load->view('employee/adminAttendanceView', $data);
-
-    //     } else {
-    //         $this->session->sess_destroy();
-    //         redirect('Employee/Login');
-    //     }
-    // } 
-
     function viewAttendance()
-{
-    $access = $this->session->userdata('accesslevel');
-    if ($this->session->userdata('status') == 'active' && ($access == 'ADMIN' || $access == 'HR')) {
+    {
+        $access = $this->session->userdata('accesslevel');
+        if ($this->session->userdata('status') == 'active' && ($access == 'ADMIN' || $access == 'HR')) {
 
-        $this->load->model('AttendanceModel');
-        $empid_session = $this->session->userdata('empid');
+            $this->load->model('AttendanceModel');
+            $empid_session = $this->session->userdata('empid');
 
-        // 1. Fetch the HR/Admin's OWN today's log for the top card
-        $todayAttendance = $this->AttendanceModel->get_today_login_logout($empid_session);
+            // 1. Fetch the HR/Admin's OWN today's log for the top card
+            $todayAttendance = $this->AttendanceModel->get_today_login_logout($empid_session);
 
-        $postd = $this->input->post();
-        if ($postd) {
-            $postdata = $this->security->xss_clean($postd);
-            $s_id = trim($postdata['searchempid'] ?? '');
-            $start = $postdata['startdate'] ?? '';
-            $end = $postdata['enddate'] ?? '';
-            // 2. Search results for the table below
-            $list = $this->AttendanceModel->find_empid_with_daterange($s_id, $start, $end);
+            $postd = $this->input->post();
+            if ($postd) {
+                $postdata = $this->security->xss_clean($postd);
+                $s_id = trim($postdata['searchempid'] ?? '');
+                $start = $postdata['startdate'] ?? '';
+                $end = $postdata['enddate'] ?? '';
+                // 2. Search results for the table below
+                $list = $this->AttendanceModel->find_empid_with_daterange($s_id, $start, $end);
+            } else {
+                // 3. Default list for the table below
+                $list = $this->AttendanceModel->get_attendance_of_all_employee();
+            }
+
+            // 4. Combine both for the View
+            $data = array(
+                'atten' => $list,
+                'todayAttendance' => $todayAttendance
+            );
+
+            $header = ($access == 'HR') ? 'hr/hrHeaderView' : 'employee/adminHeaderView';
+            $this->load->view($header);
+            $this->load->view('employee/adminAttendanceView', $data);
+
         } else {
-            // 3. Default list for the table below
-            $list = $this->AttendanceModel->get_attendance_of_all_employee();
+            $this->session->sess_destroy();
+            redirect('Employee/Login');
         }
-
-        // 4. Combine both for the View
-        $data = array(
-            'atten' => $list,
-            'todayAttendance' => $todayAttendance 
-        );
-
-        $header = ($access == 'HR') ? 'hr/hrHeaderView' : 'employee/adminHeaderView';
-        $this->load->view($header);
-        $this->load->view('employee/adminAttendanceView', $data);
-
-    } else {
-        $this->session->sess_destroy();
-        redirect('Employee/Login');
     }
-}
     // Admin view fetch job applicants details
     public function getApplicantDetails($id)
     {
@@ -1095,6 +1053,56 @@ class Employee extends CI_Controller
 
         // Redirect back to the dashboard to refresh the table
         redirect('Employee/Dashboard');
+    }
+
+    public function viewEmployeeLeaveRequests()
+    {
+        if (
+            $this->session->has_userdata('empid') &&
+            $this->session->has_userdata('email') &&
+            $this->session->has_userdata('accesslevel') &&
+            $this->session->has_userdata('branch') &&
+            $this->session->has_userdata('status') &&
+            $this->session->userdata('status') == 'active' &&
+            ($this->session->userdata('accesslevel') == 'ADMIN' || $this->session->userdata('accesslevel') == 'HR')
+        ) {
+
+            $this->load->model('RequestsModel');
+
+            $postd = $this->input->post();
+
+            //  HANDLE STATUS UPDATE (Approve / Reject)
+            if ($postd) {
+                $postdata = $this->security->xss_clean($postd);
+
+                $id = trim($postdata['request_id'] ?? '');
+                $status = trim($postdata['status'] ?? '');
+
+                if ($id != '' && $status != '') {
+
+                    $this->RequestsModel->update_request_status($id, $status);
+
+                    $this->session->set_flashdata('msg', 'Request updated successfully.');
+                    redirect('Employee/viewEmployeeLeaveRequests');
+                }
+            }
+
+            //  FETCH ALL REQUESTS
+            $data['requests'] = $this->RequestsModel->get_all_requests();
+
+            //  LOAD VIEW (HR / ADMIN)
+            if ($this->session->userdata('accesslevel') == 'HR') {
+                $this->load->view('hr/hrHeaderView');
+                $this->load->view('hr/hrLeaveRequestView', $data);
+            } else {
+                $this->load->view('employee/adminHeaderView');
+                $this->load->view('employee/adminEmployeeRequestView', $data);
+            }
+
+        } else {
+            $this->session->sess_destroy();
+            echo 'INVALID ACCESS';
+        }
     }
 
     // Process Hiring Decisions from Dashboard

@@ -164,7 +164,7 @@
                                             <i class="fas fa-code text-primary"></i> <?= $job->sejob_skills ?>
                                         </span>
                                         <span class="premium-badge-soft">
-                                            <span class="text-success fw-bold">₹</span> <?= number_format($job->sejob_salary) ?>/mo
+                                            <span class="text-success fw-bold">Upto₹</span> <?= number_format($job->sejob_salary) ?>/mo
                                         </span>
                                         <span class="premium-badge-soft">
                                             <i class="fas fa-clock text-info"></i> <?= ucfirst($job->sejob_workinghours) ?>
