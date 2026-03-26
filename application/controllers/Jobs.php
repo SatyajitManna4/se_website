@@ -1,228 +1,164 @@
 <?php
+
 // This code is Written by :
-// PAPPU BISWAS 
+// biki
 // Suropriyo Eterprise
 // Howrah
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Jobs extends CI_Controller
 {
-
-    function index()
+    public function __construct()
     {
+        parent::__construct();
         $this->load->model('JobsModel');
+        $this->load->model('jobApplicationModel'); // Added for portal logic
+        $this->load->library('session');
+        $this->load->helper(array('form', 'url'));
+    }
 
+    // ==========================================
+    // PUBLIC METHODS (Browsing & Searching)
+    // ==========================================
+
+    public function index()
+    {
         $search_query = $this->input->post();
-        $ques = '';
-        if (isset($search_query['search'])) {
-            $ques = $search_query['search'];
-        }
-        ;
+        $ques = isset($search_query['search']) ? $search_query['search'] : '';
 
         $query = $this->JobsModel->get_search_in_anyfield_query($ques);
         $result = $this->JobsModel->get_jobmodel_query_result($query);
 
         $viewData = array('res' => $result);
-
         $this->load->view('jobsView', $viewData);
         $this->load->view('footerView');
     }
 
-    function SearchJob()
+    public function SearchJob()
     {
-        $this->load->model('JobsModel');
-
         $search_query = $this->input->post();
-        $ques = '';
-        if (isset($search_query['search'])) {
-            $ques = $search_query['search'];
-        }
-        ;
+        $ques = isset($search_query['search']) ? $search_query['search'] : '';
 
         $query = $this->JobsModel->get_search_in_anyfield_query($ques);
         $result = $this->JobsModel->get_jobmodel_query_result($query);
 
         $viewData = array('res' => $result);
-
         $this->load->view('jobsView', $viewData);
         $this->load->view('footerView');
     }
 
-
-    function FilterJob()
+    public function FilterJob()
     {
-        $this->load->model('JobsModel');
         $filter_query = $this->input->post();
-
-        $title = '';
-        $location = '';
-        $skills = '';
-        $experience = '';
-
-        if (isset($filter_query['jtitle'])) {
-            $title = $filter_query['jtitle'];
-        }
-        ;
-        if (isset($filter_query['jlocation'])) {
-            $location = $filter_query['jlocation'];
-        }
-        ;
-        if (isset($filter_query['jskills'])) {
-            $skills = $filter_query['jskills'];
-        }
-        ;
-        if (isset($filter_query['jexp'])) {
-            $experience = $filter_query['jexp'];
-        }
-        ;
+        $title = $filter_query['jtitle'] ?? '';
+        $location = $filter_query['jlocation'] ?? '';
+        $skills = $filter_query['jskills'] ?? '';
+        $experience = $filter_query['jexp'] ?? '';
 
         $query = $this->JobsModel->filter_jobs_query($title, $location, $skills, $experience);
         $result = $this->JobsModel->get_jobmodel_query_result($query);
 
         $viewData = array('res' => $result);
-
         $this->load->view('jobsView', $viewData);
         $this->load->view('footerView');
-
     }
 
-    // function Sort(){
-    //     $this->load->model('JobsModel');
-
-    //     $search_query = $this->input->post();
-
-    //     $ques = '';
-    //     if(isset($search_query['search'])){
-    //         $ques = $search_query['search'];
-    //     };
-
-    //     $query = $this->JobsModel->get_search_in_anyfield_query($ques); 
-    //     $result = $this->JobsModel->get_jobmodel_query_result($query);
-
-    //     $viewData = array('res' => $result);
-
-    //     $this->load->view('jobsView', $viewData);
-    // 	$this->load->view('footerView');
-
-    // }
+    // ==========================================
+    // SECURE METHODS (Applying for Jobs)
 
 
-    function Apply()
+    public function Apply($job_id = null)
     {
-        $this->load->view('jobsApplyView');
-    }
-
-    function ApplyStatus()
-    {
-        $this->load->model('jobApplicationModel');
-        $form_data = $this->input->post();
-
-        if ($form_data == null) {
-            die;
+        if ($job_id == null) {
+            redirect('Careers/Jobs');
         }
 
-        $vconfig = array(
-            array(
-                'field' => 'fullname',
-                'label' => 'FullName',
-                'rules' => 'required|trim'
-            ),
-            array(
-                'field' => 'email',
-                'label' => 'Email',
-                'rules' => 'required|valid_email|trim'
-            ),
-            array(
-                'field' => 'phone',
-                'label' => 'Phone',
-                'rules' => 'required|trim',
-                'errors' => array(
-                    'required' => 'You must provide a valid %s.',
-                ),
-            ),
-            array(
-                'field' => 'position',
-                'label' => 'Position',
-                'rules' => 'required|trim',
-                'errors' => array(
-                    'required' => 'You must provide a valid Job %s.',
-                ),
-            ),
-            array(
-                'field' => 'experience',
-                'label' => 'Experience',
-                'rules' => 'required|numeric|trim',
-                'errors' => array(
-                    'required' => 'You must provide a valid %s.',
-                ),
-            ),
-            array(
-                'field' => 'salary',
-                'label' => 'Salary',
-                'rules' => 'required|numeric|trim',
-                'errors' => array(
-                    'required' => 'You must provide a valid %s.',
-                ),
-            ),
-            array(
-                'field' => 'coverletter',
-                'label' => 'CoverLetter',
-                'rules' => 'required|trim',
-                'errors' => array(
-                    'required' => 'You must provide a valid %s.',
-                ),
-            ),
-        );
+        // 1. THE INTERCEPT: Not logged in? Save the destination and redirect to login.
+        if (!$this->session->userdata('candidate_logged_in')) {
+            $this->session->set_userdata('redirect_to_job', $job_id);
+            $this->session->set_flashdata('error', 'Please log in to apply for this position.');
+            redirect('Candidate/login');
+        }
 
-        $this->form_validation->set_rules($vconfig);
-        $this->form_validation->run();
-        $errors = validation_errors();
+        $candidate_id = $this->session->userdata('candidate_id');
 
-        if ($errors == FALSE && isset($_FILES['resume'])) {
+        // 2. ELIGIBILITY CHECK: Did they already apply for this specific job?
+        if (!$this->jobApplicationModel->is_eligible_to_apply($candidate_id, $job_id)) {
+            $this->session->set_flashdata('error', 'You have already submitted an application for this role.');
+            redirect('Candidate/dashboard');
+        }
+
+        // 3. FETCH DATA FOR THE VIEW
+        $data['job_details'] = $this->JobsModel->get_job_by_id($job_id);
+
+        // Fetch the candidate's core details so we can pre-fill the form
+        $this->load->model('CandidateModel');
+        $data['candidate_details'] = $this->CandidateModel->get_candidate_by_id($candidate_id);
+
+        // 4. LOAD THE VIEWS
+        $this->load->view('headerView');
+        $this->load->view('jobsApplyView', $data);
+        $this->load->view('footerView');
+    }
+    public function ApplyStatus($job_id = null)
+    {
+        if ($job_id == null || !$this->session->userdata('candidate_logged_in')) {
+            redirect('Careers/Jobs');
+        }
+
+        $candidate_id = $this->session->userdata('candidate_id');
+
+        // Verify eligibility again before processing
+        if (!$this->jobApplicationModel->is_eligible_to_apply($candidate_id, $job_id)) {
+            redirect('Candidate/dashboard');
+        }
+
+        if (isset($_FILES['resume']) && $_FILES['resume']['error'] == 0) {
 
             $config['upload_path'] = './resume/';
             $config['allowed_types'] = 'pdf';
-            $config['file_name'] = 'resume_' . strval($form_data['phone'] . '');
-            $config['max_size'] = 5120;
+            $config['file_name'] = 'resume_cand_' . $candidate_id . '_' . time();
+            $config['max_size'] = 5120; // 5MB
 
             $this->load->library('upload', $config);
-            $fileinfo = $this->upload->data();
 
-            //The file path need to be adjusted as per codeigniter
-            $filepath = $_SERVER['DOCUMENT_ROOT'] . '/codeigniter/resume/' . $fileinfo['file_name'] . ".pdf";
-            $ispresent = file_exists($filepath);
-            if ($ispresent) {
-                unlink($filepath);
-            }
-            $isuploaded = $this->upload->do_upload('resume');
-            $filerror = $this->upload->display_errors();
+            if ($this->upload->do_upload('resume')) {
+                $fileinfo = $this->upload->data();
+                $resume_path = './resume/' . $fileinfo['file_name'];
 
-            if ($isuploaded == TRUE) {
-                $is_success = $this->jobApplicationModel->register_applicant($form_data, $fileinfo['full_path']);
-                if ($is_success == 0) {
-                    $this->load->model('EmailModel');
-                    $this->EmailModel->send_applicant_submission_email($form_data['email'],$form_data['fullname'],$form_data['position'],$form_data['phone']);
-                    $this->load->view('applicationSuccessView');
-                } else {
-                    $this->load->view('alertView', array("alertclass" => '', "heading" => "Something went wrong."));
-                    $this->load->view('jobsApplyView');
+                // Capture all the form data
+                $cover_letter = $this->input->post('coverletter');
+                $phone = $this->input->post('phone');
+                $experience = $this->input->post('experience');
+                $expected_salary = $this->input->post('expected_salary');
+
+                // If they provided a name (because they didn't have one), update their candidate profile
+                $full_name = $this->input->post('full_name');
+                if (!empty($full_name)) {
+                    $this->db->where('id', $candidate_id);
+                    $this->db->update('secandidates', array('full_name' => $full_name));
                 }
-            } else {
-                $this->load->view('alertView', array("alertclass" => '', "heading" => "Please choose the correct file format."));
-                $this->load->view('jobsApplyView');
+
+                // Submit record linking the candidate_id to the job record with all new data
+                $is_success = $this->jobApplicationModel->submit_application(
+                    $candidate_id,
+                    $job_id,
+                    $resume_path,
+                    $cover_letter,
+                    $phone,
+                    $experience,
+                    $expected_salary
+                );
+
+                if ($is_success) {
+                    $this->session->set_flashdata('success', 'Application submitted successfully!');
+                    redirect('Candidate/dashboard');
+                } else {
+                    $this->session->set_flashdata('error', 'Database error. Please try again.');
+                    redirect('Jobs/Apply/' . $job_id);
+                }
             }
-
-        } else {
-            $this->load->view('alertView', array("alertclass" => '', "heading" => " Please Fill the form Correctly. "));
-            $this->load->view('jobsApplyView');
         }
-
     }
-
-
 }
-
-
-
-?>

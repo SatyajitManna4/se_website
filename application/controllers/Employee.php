@@ -1202,7 +1202,6 @@ class Employee extends CI_Controller
         $this->load->model('InterviewModel');
         $this->load->model('jobApplicationModel');
 
-        // FIX: Secure POST array fetching using CI Input Class
         $email = $this->input->post('email', TRUE);
         $name = $this->input->post('name', TRUE);
         $position = $this->input->post('position', TRUE);
@@ -1212,7 +1211,6 @@ class Employee extends CI_Controller
         $time = $this->input->post('interview_time', TRUE);
         $location = $this->input->post('location', TRUE);
 
-        // Security check for missing required fields
         if (empty($applicant_id) || empty($email) || empty($date)) {
             $this->session->set_flashdata('error', 'Missing required interview details. Please try again.');
             redirect('Employee/viewJobApplicants');
@@ -1228,10 +1226,12 @@ class Employee extends CI_Controller
             'scheduled_by' => $hr_name
         );
 
+        // This now correctly sets the status to 'interviewing' in the DB
         $db_result = $this->jobApplicationModel->schedule_interview($applicant_id, $interview_data);
 
         if ($db_result['code'] == 0) {
 
+            // Attempt to send the email
             $email_result = $this->InterviewModel->send_interview_email(
                 $email,
                 $name,
@@ -1244,13 +1244,10 @@ class Employee extends CI_Controller
             );
 
             if ($email_result == 0) {
-                // Automatically shift status to "interviewing" when an invite is sent!
-                $this->db->where('sejoba_id', $applicant_id);
-                $this->db->update('sejobapplicant', ['sejoba_state' => 'interviewing']);
-
-                $this->session->set_flashdata('msg', 'Interview Invitation Sent & Status marked as interviewing.');
+                $this->session->set_flashdata('msg', 'Interview scheduled and Email Invitation sent!');
             } else {
-                $this->session->set_flashdata('error', 'Interview saved to database but email failed to send.');
+                // Modified Error: Acknowledges the DB success, warns about local email failure
+                $this->session->set_flashdata('error', 'Status updated to Interviewing, but the Email failed to send (Check local SMTP config).');
             }
         } else {
             $this->session->set_flashdata('error', 'Failed to save interview to database: ' . $db_result['message']);
