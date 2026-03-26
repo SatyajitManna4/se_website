@@ -111,5 +111,11 @@ class JobsModel extends CI_Model
         }
         return $query;
     }
+    // Fetches a single job to display on the apply page
+    public function get_job_by_id($job_id)
+    {
+        $this->db->where('sejob_id', $job_id);
+        return $this->db->get('sejobs')->row();
+    }
 }
 ?>
