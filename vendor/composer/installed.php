@@ -3,7 +3,7 @@
         'name' => 'codeigniter/framework',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '3ca88242369457beecf77f2579598a54e67252f1',
+        'reference' => '5c04c00286ab2bc8ccf35fff8444a008108c238e',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'codeigniter/framework' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '3ca88242369457beecf77f2579598a54e67252f1',
+            'reference' => '5c04c00286ab2bc8ccf35fff8444a008108c238e',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -127,6 +127,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'graham-campbell/result-type' => array(
+            'pretty_version' => 'v1.1.4',
+            'version' => '1.1.4.0',
+            'reference' => 'e01f4a821471308ba86aa202fed6698b6b695e3b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../graham-campbell/result-type',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'guzzlehttp/guzzle' => array(
             'pretty_version' => '7.10.0',
             'version' => '7.10.0.0',
@@ -225,6 +234,15 @@
             'install_path' => __DIR__ . '/../phar-io/version',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'phpoption/phpoption' => array(
+            'pretty_version' => '1.9.5',
+            'version' => '1.9.5.0',
+            'reference' => '75365b91986c2405cf5e1e012c5595cd487a98be',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpoption/phpoption',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'phpseclib/phpseclib' => array(
             'pretty_version' => '3.0.50',
@@ -675,7 +693,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-ctype',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'symfony/polyfill-intl-grapheme' => array(
             'pretty_version' => 'v1.33.0',
@@ -702,7 +720,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-mbstring',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'symfony/polyfill-php73' => array(
             'pretty_version' => 'v1.33.0',
@@ -720,7 +738,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/polyfill-php80',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'symfony/polyfill-php81' => array(
             'pretty_version' => 'v1.33.0',
@@ -784,6 +802,15 @@
             'install_path' => __DIR__ . '/../theseer/tokenizer',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'vlucas/phpdotenv' => array(
+            'pretty_version' => 'v5.6.3',
+            'version' => '5.6.3.0',
+            'reference' => '955e7815d677a3eaa7075231212f2110983adecc',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../vlucas/phpdotenv',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
     ),
 );
