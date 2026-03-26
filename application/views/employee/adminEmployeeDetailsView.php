@@ -107,16 +107,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
 
-                        <!-- Resume file link (kept as link)
-                        <div class="info-item" style="grid-column: 1 / -1;">
-                            <div class="info-label">Resume</div>
-                            <div class="info-value">
-                                <a href="#" class="file-link" onclick="downloadFile('resume')">
-                                    <i class="fas fa-file-pdf"></i>
-                                    resume-rahul-sharma.pdf
-                                </a>
-                            </div>
-                        </div> -->
+                       
 
                         <div class="info-item" style="grid-column: 1 / -1;">
                             <div class="info-label">Permanent Address</div>

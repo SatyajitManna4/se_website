@@ -16,124 +16,175 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 
 <body>
+    
+<div class="modal fade" id="timeOffModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-4 shadow">
 
-    <div class="modal fade" id="timeOffModal" tabindex="-1" aria-labelledby="timeOffLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title fw-semibold" id="timeOffLabel">
-                        <i class="fas fa-calendar-plus"></i> Request
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-
-                    <?= form_open('Employee/EmployeeRequest') ?>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Start Date</label>
-                        <input name="startdate" type="date" class="form-control" value="<?= set_value('startdate'); ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">End Date</label>
-                        <input name="enddate" type="date" class="form-control" value="<?= set_value('enddate'); ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Reason</label>
-                        <select name="reason" class="form-select" required>
-                            <option value="">Select reason</option>
-                            <option value="Medical" <?= set_select('reason', 'Medical'); ?>>Medical</option>
-                            <option value="Leave" <?= set_select('reason', 'Leave'); ?>>Leave</option>
-                            <option value="Personal" <?= set_select('reason', 'Personal'); ?>>Personal</option>
-                            <option value="Business" <?= set_select('reason', 'Business'); ?>>Business</option>
-                        </select>
-                    </div>
-                    <input name="action" type="hidden" value="requestsubmit" class="form-control" required>
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Summary</label>
-                        <textarea name="summary" class="form-control" rows="3" placeholder="Reason in details..." required><?= set_value('summary'); ?></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Submit Request</button>
-                    <?= form_close() ?>
-
-                </div>
+            <div class="modal-header">
+                <h5 class="modal-title fw-semibold">
+                    <i class="fas fa-calendar-plus me-2"></i>New Request
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
+
+            <div class="modal-body">
+
+                <?= form_open('Employee/EmployeeRequest') ?>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Start Date</label>
+                    <input name="startdate" type="date" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">End Date</label>
+                    <input name="enddate" type="date" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Reason</label>
+                    <select name="reason" class="form-select" required>
+                        <option value="">Select reason</option>
+                        <option value="Medical">Medical</option>
+                        <option value="Leave">Leave</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Business">Business</option>
+                    </select>
+                </div>
+
+                <input name="action" type="hidden" value="requestsubmit">
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Summary</label>
+                    <textarea name="summary" class="form-control" rows="3" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 rounded-pill">
+                    Submit Request
+                </button>
+
+                <?= form_close() ?>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+  <div class="container py-4">
+
+    <!-- HEADER -->
+    <div class="mb-4 p-3 rounded-4 shadow-sm text-white"
+         style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">
+        <h4 class="fw-bold mb-1">
+            <i class="fas fa-paper-plane me-2"></i>Request Dashboard
+        </h4>
+        <small class="opacity-75">Manage your leave and requests</small>
+    </div>
+
+    <!-- ALERTS -->
+    <?php if ($this->session->flashdata('success')): ?>
+        <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-3 mb-4">
+            <i class="fas fa-check-circle me-2"></i>
+            <?= $this->session->flashdata('success'); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (validation_errors() && trim(validation_errors()) != ''): ?>
+        <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3 mb-4">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <?= validation_errors(); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    <?php endif; ?>
+
+    <!-- CARD -->
+    <div class="card border-0 shadow-lg rounded-4">
+        <div class="card-body">
+
+            <!-- TOP BAR -->
+            <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <h5 class="fw-semibold mb-0">
+                    <i class="fas fa-list me-2 text-primary"></i>Request History
+                </h5>
+
+                <button class="btn btn-primary rounded-pill px-4"
+                        data-bs-toggle="modal" data-bs-target="#timeOffModal">
+                    <i class="fas fa-plus me-1"></i> New Request
+                </button>
+            </div>
+
+            <!-- TABLE -->
+            <div class="table-responsive">
+                <table class="table align-middle table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Reason</th>
+                            <th>Summary</th>
+                            <th>Applied On</th>
+                            <th>Date Range</th>
+                            <th>Days</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php foreach ($requests as $req) { ?>
+                            <tr>
+
+                                <td class="fw-semibold"><?= $req->seemrq_id ?></td>
+
+                                <td>
+                                    <span class="badge bg-info-subtle text-info px-3 py-2">
+                                        <?= $req->seemrq_reason ?>
+                                    </span>
+                                </td>
+
+                                <td class="text-muted"><?= $req->seemrq_summary ?></td>
+
+                                <td><?= $req->seemrq_reqdate ?></td>
+
+                                <td>
+                                    <span class="text-primary fw-medium">
+                                        <?= $req->seemrq_fromdate ?>
+                                    </span>
+                                    <br>
+                                    <small class="text-muted">to <?= $req->seemrq_todate ?></small>
+                                </td>
+
+                                <td>
+                                    <span class="badge bg-secondary-subtle text-dark px-3 py-2">
+                                        <?= $req->seemrq_days ?> days
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="badge px-3 py-2
+                                        <?php
+                                            switch ($req->seemrq_status) {
+                                                case 'approved': echo 'bg-success-subtle text-success'; break;
+                                                case 'rejected': echo 'bg-danger-subtle text-danger'; break;
+                                                default: echo 'bg-warning-subtle text-warning'; break;
+                                            }
+                                        ?>">
+                                        <?= ucfirst($req->seemrq_status) ?>
+                                    </span>
+                                </td>
+
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+
+                </table>
+            </div>
+
         </div>
     </div>
 
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="requests">
-            <div class="container mt-4">            
-                <?php if ($this->session->flashdata('success')): ?>
-                    <div class="alert alert-success alert-dismissible fade show shadow-sm mb-4" role="alert">
-                        <i class="fas fa-check-circle me-2"></i><strong>Success!</strong>
-                        <?= $this->session->flashdata('success'); ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (validation_errors() && trim(validation_errors()) != ''): ?>
-                    <div class="alert alert-danger alert-dismissible fade show shadow-sm mb-4" role="alert">
-                        <i class="fas fa-exclamation-circle me-2"></i><strong>Submission Failed!</strong><br>
-                        <?= validation_errors(); ?>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                <?php endif; ?>
-                 
-                <div class="section-header">
-                    <h3 class="mb-0 fw-semibold text-primary">
-                        <i class="fas fa-clock me-2"></i>Request Summary
-                    </h3>
-                    <span class="badge bg-primary fs-6 px-3 py-2">Request</span>
-                </div>
-                <div class="card p-3">
-                    <h5 class="fw-semibold"><i class="fas fa-paper-plane"></i> Requests</h5>
-
-                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#timeOffModal">
-                        <i class="fas fa-plus"></i> Request
-                    </button>
-
-                    <div>
-                        <table class="table table-hover">
-                            <thead class="table-light" style="background-color: black;">
-                                <tr>
-                                    <th scope="col" class="fw-semibold">Request ID</th>
-                                    <th scope="col" class="fw-semibold">Reason</th>
-                                    <th scope="col" class="fw-semibold">Summary</th>
-                                    <th scope="col" class="fw-semibold">Date Applied</th>
-                                    <th scope="col" class="fw-semibold">Applied For</th>
-                                    <th scope="col" class="fw-semibold">Days Count</th>
-                                    <th scope="col" class="fw-semibold">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($requests as $req) { ?>
-                                    <tr>
-                                        <td><div><?= $req->seemrq_id ?></div></td>
-                                        <td><div><?= $req->seemrq_reason ?></div></td>
-                                        <td><div><?= $req->seemrq_summary ?></div></td>
-                                        <td><div><?= $req->seemrq_reqdate ?></div></td>
-                                        <td><div><?= $req->seemrq_fromdate . ' to ' . $req->seemrq_todate ?></div></td>
-                                        <td><div><?= $req->seemrq_days ?></div></td>
-                                        <td>
-                                            <div class="badge <?php switch ($req->seemrq_status) {
-                                                case 'approved': echo 'text-bg-success'; break;
-                                                case 'rejected': echo 'text-bg-danger'; break;
-                                                default: echo 'text-bg-warning'; break;
-                                            } ?>" style="width:90px; margin-left:30px;">
-                                                <?= $req->seemrq_status ?>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 
     <?php if (validation_errors() && trim(validation_errors()) != ''): ?>
         <script>

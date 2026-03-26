@@ -59,11 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <option value="completed" <?= ($this->input->get('status') == 'completed') ? 'selected' : '' ?>>Completed Projects (<?= $completed ?> Done)</option>
                         </select>
                     </div>
-                    <!-- <div class="col-md-2">
-                        <button type="button" class="btn btn-outline-primary w-100 btn-disabled">
-                            <i class="fas fa-search me-1"></i>Search
-                        </button>
-                    </div> -->
+                  
                     <div class="col-md-2">
                         <a href="<?= base_url('Employee/addProjectPage') ?>" class="btn btn-primary w-100">
                             <i class="fas fa-plus me-1"></i>New Project
