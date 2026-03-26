@@ -1,4 +1,4 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,6 @@
 <body>
     <section class="job-search-section py-5 bg-light">
         <div class="container">
-
             <div class="row mb-4">
                 <div class="col-12">
                     <a href="<?= base_url('Careers') ?>"
@@ -36,10 +35,8 @@
                                 <i class="fas fa-search text-muted"></i>
                             </span>
                             <input type="text" class="form-control border-0 shadow-none search-main"
-                                placeholder="Search by Job Title,Keywords..." name="search" id="search">
-                            <button class="btn btn-primary search-btn-main" type="submit">
-                                Search Jobs
-                            </button>
+                                placeholder="Search by Job Title, Keywords..." name="search" id="search">
+                            <button class="btn btn-primary search-btn-main" type="submit">Search Jobs</button>
                         </div>
                     </div>
                 </div>
@@ -83,8 +80,6 @@
                                 <option value="python">Python</option>
                                 <option value="java">Java</option>
                                 <option value="html">HTML</option>
-                                <option value="c">C and C++</option>
-                                <option value="rust">Rust</option>
                                 <option value="php">PHP</option>
                                 <option value="react">React</option>
                             </select>
@@ -111,8 +106,8 @@
                 <div class="col-lg col-md-4 col-sm-6">
                     <div
                         class="premium-filter-group h-100 d-flex align-items-end p-0 bg-transparent border-0 shadow-none">
-                        <button class="btn btn-outline-primary w-100 filter-btn h-100" type="submit">
-                            <i class="fas fa-sliders-h me-2"></i> Filter Jobs
+                        <button class="btn btn-outline-primary w-100 filter-btn h-100 py-2" type="submit">
+                            <i class="fas fa-sliders-h me-2"></i> Filter
                         </button>
                     </div>
                 </div>
@@ -125,7 +120,7 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-lg-8">
-                    <h3 class="mb-0 fw-bold text-dark d-flex align-items-center gap-3" style="font-size: 2rem;">
+                    <h3 class="mb-0 fw-bold text-dark d-flex align-items-center gap-3">
                         <i class="fas fa-briefcase text-primary"></i>
                         <?= count($res) ?> Jobs Found
                     </h3>
@@ -142,7 +137,7 @@
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div class="pe-2">
                                     <h4 class="job-title mb-1"><?= $job->sejob_jobtitle ?></h4>
-                                    <div class="job-company text-primary fw-bold mb-2">Suropriyo Enterprise</div>
+                                    <div class="job-company text-primary fw-bold">Suropriyo Enterprise</div>
                                 </div>
                                 <span class="badge rounded-pill <?php
                                             if ($job->sejob_urgency == 'new') echo "bg-success";
@@ -150,62 +145,59 @@
                                             elseif ($job->sejob_urgency == 'urgent') echo "bg-danger";
                                         ?>"><?= ucfirst($job->sejob_urgency) ?></span>
                             </div>
+                        </div>
 
-                                <div class="job-body p-4 d-flex flex-column flex-grow-1">
-                                    
-                                    <div class="job-badges-container mb-4">
-                                        <span class="premium-badge-soft">
-                                            <i class="fas fa-code text-primary"></i> <?= $job->sejob_skills ?>
-                                        </span>
-                                        <span class="premium-badge-soft">
-                                            <span class="text-success fw-bold">Upto₹</span> <?= number_format($job->sejob_salary) ?>/mo
-                                        </span>
-                                        <span class="premium-badge-soft">
-                                            <i class="fas fa-clock text-info"></i> <?= ucfirst($job->sejob_workinghours) ?>
-                                        </span>
-                                    </div>
+                        <div class="job-body p-4 d-flex flex-column flex-grow-1">
+                            <div class="job-badges-container mb-4">
+                                <span class="premium-badge-soft">
+                                    <i class="fas fa-code text-primary"></i> <?= $job->sejob_skills ?>
+                                </span>
+                                <span class="premium-badge-soft">
+                                    <span class="text-success fw-bold">₹</span>
+                                    <?= number_format($job->sejob_salary) ?>/mo
+                                </span>
+                                <span class="premium-badge-soft">
+                                    <i class="fas fa-clock text-info"></i> <?= ucfirst($job->sejob_workinghours) ?>
+                                </span>
+                            </div>
 
                             <div class="job-description mb-4 flex-grow-1">
-                                <?php 
-                                            $desc = trim($job->sejob_desc);
-                                            $uid = $job->sejob_id;
-                                            
-                                            if (strlen($desc) > 120): 
-                                                $cut_string = substr($desc, 0, 120);
-                                                $last_space = strrpos($cut_string, ' ');
-                                                $short_desc = $last_space ? substr($cut_string, 0, $last_space) : $cut_string;
+                                <?php
+                                        $desc = trim($job->sejob_desc);
+                                        $uid = $job->sejob_id;
+                                        if (strlen($desc) > 120):
+                                            $short_desc = substr($desc, 0, 115);
                                         ?>
                                 <div class="collapse show multi-collapse-<?= $uid ?>" id="shortDesc<?= $uid ?>">
                                     <span><?= $short_desc ?>...</span>
-                                    <a data-bs-toggle="collapse" data-bs-target=".multi-collapse-<?= $uid ?>" href="#"
-                                        class="read-more-link ms-1">Read More</a>
+                                    <a data-bs-toggle="collapse" data-bs-target=".multi-collapse-<?= $uid ?>"
+                                        href="javascript:void(0);" class="read-more-link ms-1">Read More</a>
                                 </div>
 
                                 <div class="collapse multi-collapse-<?= $uid ?>" id="fullDesc<?= $uid ?>">
                                     <div class="full-desc-box">
                                         <?= $desc ?>
                                     </div>
-                                    <a data-bs-toggle="collapse" data-bs-target=".multi-collapse-<?= $uid ?>" href="#"
-                                        class="read-more-link mt-2 d-inline-block">Show Less</a>
+                                    <a data-bs-toggle="collapse" data-bs-target=".multi-collapse-<?= $uid ?>"
+                                        href="javascript:void(0);" class="read-more-link mt-2 d-inline-block">Show
+                                        Less</a>
                                 </div>
-
                                 <?php else: ?>
                                 <div><?= $desc ?></div>
                                 <?php endif; ?>
                             </div>
 
                             <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
-                                <div class="job-meta-bottom">
-                                    <i class="far fa-calendar-alt me-1"></i> Posted:
-                                    <?= date('M d, Y', strtotime($job->sejob_dateofpost)) ?>
+                                <div class="job-meta-bottom text-muted">
+                                    <i class="far fa-calendar-alt me-1"></i>
+                                    <small><?= date('M d, Y', strtotime($job->sejob_dateofpost)) ?></small>
                                 </div>
-                                <a href="<?=base_url()?>Jobs/Apply/<?= $job->sejob_id ?>"
-                                    class="btn btn-primary btn-apply">
+                                <a href="<?= base_url() ?>Jobs/Apply/<?= $job->sejob_id ?>"
+                                    class="btn btn-primary btn-apply px-4">
                                     Apply Now
                                 </a>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -214,15 +206,13 @@
                     <div class="empty-state-card">
                         <i class="fas fa-search-minus empty-icon mb-4"></i>
                         <h3 class="fw-bold text-dark mb-2">No jobs found</h3>
-                        <p class="text-secondary mb-4">We couldn't find any jobs matching your current search criteria.
-                        </p>
+                        <p class="text-secondary mb-4">Try adjusting your filters or keywords.</p>
                         <a href="<?= base_url('Jobs') ?>" class="btn btn-outline-primary btn-apply">
                             <i class="fas fa-sync-alt me-2"></i>Reset Filters
                         </a>
                     </div>
                 </div>
                 <?php endif; ?>
-
             </div>
         </div>
     </section>

@@ -76,10 +76,7 @@ class Candidate extends CI_Controller {
         }
     }
 
-    // ==========================================
-    // 2. CANDIDATE LOGIN
-    // ==========================================
-    public function login()
+      public function login()
     {
         // Redirect if already logged in
         if ($this->session->userdata('candidate_logged_in')) {
@@ -200,8 +197,8 @@ class Candidate extends CI_Controller {
 
         $client = new Google_Client();
         // Fixed the 'Y' typo at the beginning of the Client ID
-        $client->setClientId('341574282583-bgq4obme0j23etqn493ql8tuj18vjgt7.apps.googleusercontent.com');
-        $client->setClientSecret('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');
+        $client->setClientId('810192388190-hrjsvn76d7rcfvcmptcrdphuhhrrimar.apps.googleusercontent.com');
+        $client->setClientSecret('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');
         $client->setRedirectUri(base_url('Candidate/google_callback')); 
         $client->addScope("email");
         $client->addScope("profile");
@@ -215,9 +212,9 @@ class Candidate extends CI_Controller {
        require_once FCPATH . 'vendor/autoload.php';
 
         $client = new Google_Client();
-        // Fixed the newline break inside the Client ID string
-        $client->setClientId('341574282583-bgq4obme0j23etqn493ql8tuj18vjgt7.apps.googleusercontent.com');
-        $client->setClientSecret('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');
+         
+        $client->setClientId('810192388190-hrjsvn76d7rcfvcmptcrdphuhhrrimar.apps.googleusercontent.com');
+        $client->setClientSecret('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');
         $client->setRedirectUri(base_url('Candidate/google_callback')); 
 
         if (isset($_GET['code'])) {
