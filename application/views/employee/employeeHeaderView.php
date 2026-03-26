@@ -13,12 +13,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
-     style="background: linear-gradient(90deg, #4f46e5, #7c3aed);">
+    style="background: linear-gradient(90deg, #4f46e5, #7c3aed);">
     <div class="container">
 
         <a class="navbar-brand fw-semibold" href="#">
             <i class="fas fa-building me-2"></i>
-            Supropriyo Enterprise
+            Suropriyo Enterprise
         </a>
 
         <div class="ms-auto d-flex align-items-center gap-3">
@@ -48,9 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <small class="text-muted">Manage your employee dashboard</small>
             </div>
 
-            <a href="<?= base_url() ?>Employee/ChangePassword"
-               class="btn btn-warning rounded-pill px-4"
-               data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+            <a href="<?= base_url() ?>Employee/ChangePassword" class="btn btn-warning rounded-pill px-4"
+                data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                 <i class="fas fa-key me-1"></i> Change Password
             </a>
 
@@ -62,63 +61,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="d-flex justify-content-center flex-wrap gap-3">
 
             <a href="<?= base_url() ?>Employee/EmployeeOverview"
-               class="btn btn-outline-primary rounded-pill px-4 nav-section-btn">
+                class="btn btn-outline-primary rounded-pill px-4 nav-section-btn">
                 <i class="fas fa-home me-2"></i>Overview
             </a>
 
             <a href="<?= base_url() ?>Employee/EmployeeAttendence"
-               class="btn btn-outline-primary rounded-pill px-4 nav-section-btn">
+                class="btn btn-outline-primary rounded-pill px-4 nav-section-btn">
                 <i class="fas fa-clock me-2"></i>Attendance
             </a>
 
             <a href="<?= base_url() ?>Employee/EmployeeRequest"
-               class="btn btn-outline-primary rounded-pill px-4 nav-section-btn">
+                class="btn btn-outline-primary rounded-pill px-4 nav-section-btn">
                 <i class="fas fa-paper-plane me-2"></i>Requests
             </a>
 
         </div>
     </div>
     <div class="modal fade" id="changePasswordModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content rounded-4 shadow">
+        <div class="modal-dialog">
+            <div class="modal-content rounded-4 shadow">
 
-            <div class="modal-header">
-                <h5 class="modal-title fw-semibold">
-                    <i class="fas fa-key me-2"></i>Change Password
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div class="modal-header">
+                    <h5 class="modal-title fw-semibold">
+                        <i class="fas fa-key me-2"></i>Change Password
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <?= form_open('Employee/ChangePassword') ?>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Current Password</label>
+                        <input name="oldpass" type="password" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">New Password</label>
+                        <input name="newpass" type="password" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Confirm Password</label>
+                        <input name="confirmpass" type="password" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill">
+                        Update Password
+                    </button>
+
+                    <?= form_close() ?>
+
+                </div>
+
             </div>
-
-            <div class="modal-body">
-
-                <?= form_open('Employee/ChangePassword') ?>
-
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Current Password</label>
-                    <input name="oldpass" type="password" class="form-control" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">New Password</label>
-                    <input name="newpass" type="password" class="form-control" required>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Confirm Password</label>
-                    <input name="confirmpass" type="password" class="form-control" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100 rounded-pill">
-                    Update Password
-                </button>
-
-                <?= form_close() ?>
-
-            </div>
-
         </div>
     </div>
-</div>
 
 </div>
 

@@ -63,11 +63,11 @@
     </div>
 </section>
 
-<section class="container py-5 mt-4">
+<section class="container py-5 mt-4" id="contactForm">
     <div class="row g-5 align-items-stretch">
 
         <div class="col-lg-6">
-            <div class="premium-contact-box p-4 p-md-5 h-100" id="contactForm">
+            <div class="premium-contact-box p-4 p-md-5 h-100">
                 <h3 class="mb-4 form-title">Get in Touch</h3>
                 <?= form_open("ContactUs") ?>
                 <div class="mb-4">
@@ -182,5 +182,26 @@ function openMail(e) {
         window.open("https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com", "_blank");
     }
 }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+    if (window.location.hash === "#contactForm") {
+
+        let target = $("#contactForm");
+
+        if (window.location.hash === "#contactForm") {
+            let target = $("#contactForm");
+            if (target.length) {
+                window.scrollTo(0, target.offset().top - 100);
+            }
+            history.replaceState(null, null, window.location.pathname);
+        }
+    }
+
+});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
