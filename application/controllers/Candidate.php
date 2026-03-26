@@ -76,10 +76,7 @@ class Candidate extends CI_Controller {
         }
     }
 
-    // ==========================================
-    // 2. CANDIDATE LOGIN
-    // ==========================================
-    public function login()
+      public function login()
     {
         // Redirect if already logged in
         if ($this->session->userdata('candidate_logged_in')) {
@@ -194,35 +191,44 @@ class Candidate extends CI_Controller {
     // 6. GOOGLE OAUTH 2.0 INTEGRATION
     // ==========================================
     
-    public function google_login()
-    {
-        require_once FCPATH . 'vendor/autoload.php';
+   public function google_login()
+{
+    require_once FCPATH . 'vendor/autoload.php';
+    $client = new Google_Client();
+    
+     
+    $client->setClientId(getenv('CLIENT_ID'));
+    $client->setClientSecret(getenv('CLIENT_SECRET'));
+    
+    $client->setRedirectUri(base_url('Candidate/google_callback')); 
+    $client->addScope("email");
+    $client->addScope("profile");
 
-        $client = new Google_Client();
-        // Fixed the 'Y' typo at the beginning of the Client ID
-        $client->setClientId('341574282583-bgq4obme0j23etqn493ql8tuj18vjgt7.apps.googleusercontent.com');
-        $client->setClientSecret('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');
-        $client->setRedirectUri(base_url('Candidate/google_callback')); 
-        $client->addScope("email");
-        $client->addScope("profile");
-
-        $login_url = $client->createAuthUrl();
-        redirect($login_url);
-    }
+    $login_url = $client->createAuthUrl();
+    redirect($login_url);
+}
 
     public function google_callback()
     {
        require_once FCPATH . 'vendor/autoload.php';
 
         $client = new Google_Client();
-        // Fixed the newline break inside the Client ID string
-        $client->setClientId('341574282583-bgq4obme0j23etqn493ql8tuj18vjgt7.apps.googleusercontent.com');
-        $client->setClientSecret('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');
+         
+        $client->setClientId(getenv('CLIENT_ID'));
+        $client->setClientSecret(getenv('CLIENT_SECRET'));
         $client->setRedirectUri(base_url('Candidate/google_callback')); 
 
         if (isset($_GET['code'])) {
             $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-            $client->setAccessToken($token['access_token']);
+
+    // Check if the token is valid before setting it
+    if (isset($token['error'])) {
+        $this->session->set_flashdata('error', 'Google Auth Error: ' . $token['error_description']);
+        redirect('Candidate/login');
+    }
+
+    $client->setAccessToken($token['access_token']);
+             
 
             // Get the user's Google profile info
             $google_oauth = new Google_Service_Oauth2($client);
