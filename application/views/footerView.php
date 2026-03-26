@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
     </section>
     <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2022 Copyright: <a class="text-reset fw-bold text-decoration-none" href="#">Suropriyo Enterprise</a> | All
+        © 2021  <a class="text-reset fw-bold text-decoration-none" href="#">Suropriyo Enterprise</a> | All
         Rights Reserved |
         <span class="ai-badge" style="font-size: 0.8rem; padding: 6px 18px;">🛠️ Built by Engineers</span>
     </div>
