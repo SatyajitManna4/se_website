@@ -151,32 +151,19 @@
                                         ?>"><?= ucfirst($job->sejob_urgency) ?></span>
                             </div>
 
-                            <div class="job-meta-top mt-1">
-                                <span class="me-3">
-                                    <i class="fas fa-briefcase me-1"></i>
-                                    <?= $job->sejob_experience > 0 ? $job->sejob_experience . ' Years' : 'Fresher' ?>
-                                </span>
-                                <span>
-                                    <i class="fas fa-map-marker-alt me-1"></i>
-                                    <?= $job->sejob_address ?>
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="job-body p-4 d-flex flex-column flex-grow-1">
-
-                            <div class="job-badges-container mb-4">
-                                <span class="premium-badge-soft">
-                                    <i class="fas fa-code text-primary"></i> <?= $job->sejob_skills ?>
-                                </span>
-                                <span class="premium-badge-soft">
-                                    <span class="text-success fw-bold">₹</span>
-                                    <?= number_format($job->sejob_salary) ?>/mo
-                                </span>
-                                <span class="premium-badge-soft">
-                                    <i class="fas fa-clock text-info"></i> <?= ucfirst($job->sejob_workinghours) ?>
-                                </span>
-                            </div>
+                                <div class="job-body p-4 d-flex flex-column flex-grow-1">
+                                    
+                                    <div class="job-badges-container mb-4">
+                                        <span class="premium-badge-soft">
+                                            <i class="fas fa-code text-primary"></i> <?= $job->sejob_skills ?>
+                                        </span>
+                                        <span class="premium-badge-soft">
+                                            <span class="text-success fw-bold">Upto₹</span> <?= number_format($job->sejob_salary) ?>/mo
+                                        </span>
+                                        <span class="premium-badge-soft">
+                                            <i class="fas fa-clock text-info"></i> <?= ucfirst($job->sejob_workinghours) ?>
+                                        </span>
+                                    </div>
 
                             <div class="job-description mb-4 flex-grow-1">
                                 <?php 
