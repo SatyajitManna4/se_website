@@ -194,8 +194,6 @@ class Candidate extends CI_Controller {
    public function google_login()
 {
     require_once FCPATH . 'vendor/autoload.php';
-     
-
     $client = new Google_Client();
     
      
