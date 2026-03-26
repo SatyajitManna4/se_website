@@ -8,53 +8,6 @@
         style="max-height: 400px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);">
 </div>
 
-<!-- <section class="py-5 bg-light-soft" style="position: relative; z-index: 2;">
-    <div class="container pt-4">
-        <h2 class="section-title">Our Technologies</h2>
-        <div class="row g-4 justify-content-center mt-4">
-            
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="premium-card w-100 h-100 d-flex flex-column">
-                    <div class="card-img-wrapper">
-                        <img src="<?= base_url(); ?>assets/s1.png" class="card-img-top" alt="Web Design">
-                    </div>
-                    <div class="card-body p-4 p-xl-5 d-flex flex-column flex-grow-1">
-                        <h4 class="card-title">Web Design</h4>
-                        <p class="card-text flex-grow-1">Crafting visually stunning and user-centric interfaces tailored for your business growth.</p>
-                        <a href="<?= base_url(); ?>Contactus/Technologies" class="btn btn-primary btn-premium mt-4">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="premium-card w-100 h-100 d-flex flex-column">
-                    <div class="card-img-wrapper">
-                        <img src="<?= base_url(); ?>assets/s2.png" class="card-img-top" alt="Development">
-                    </div>
-                    <div class="card-body p-4 p-xl-5 d-flex flex-column flex-grow-1">
-                        <h4 class="card-title">Development</h4>
-                        <p class="card-text flex-grow-1">Specializing in robust PHP and CodeIgniter solutions for scalable enterprise software.</p>
-                        <a href="<?= base_url(); ?>Contactus/Technologies" class="btn btn-primary btn-premium mt-4">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="premium-card w-100 h-100 d-flex flex-column">
-                    <div class="card-img-wrapper">
-                        <img src="<?= base_url(); ?>assets/s3.png" class="card-img-top" alt="SEO">
-                    </div>
-                    <div class="card-body p-4 p-xl-5 d-flex flex-column flex-grow-1">
-                        <h4 class="card-title">SEO</h4>
-                        <p class="card-text flex-grow-1">Optimizing your digital presence to ensure your software reaches the right audience.</p>
-                        <a href="<?= base_url(); ?>Contactus/Technologies" class="btn btn-primary btn-premium mt-4">Explore</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section> -->
 
 <section class="team-wrapper ">
     <div class="container py-5">
@@ -190,44 +143,44 @@
 
     <div class="row g-4 justify-content-center mt-3">
         <?php foreach ($tsm_d as $tsm) { ?>
-            <div class="col-12 col-md-6 col-lg-4 d-flex">
-                <div class="premium-testimonial-card p-4 p-xl-5 w-100 d-flex flex-column">
-                    <i class="fas fa-quote-right giant-bg-quote-tsm"></i>
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="premium-testimonial-card p-4 p-xl-5 w-100 d-flex flex-column">
+                <i class="fas fa-quote-right giant-bg-quote-tsm"></i>
 
-                    <div class="testimonial-avatar-wrapper mb-4">
-                        <img src="<?= base_url(); ?>assets/<?= $tsm->setsm_img ?>" alt="<?= $tsm->setsm_name ?>" />
-                    </div>
+                <div class="testimonial-avatar-wrapper mb-4">
+                    <img src="<?= base_url(); ?>assets/<?= $tsm->setsm_img ?>" alt="<?= $tsm->setsm_name ?>" />
+                </div>
 
-                    <h4 class="testimonial-name"><?= $tsm->setsm_name ?></h4>
-                    <span class="testimonial-role"><?= $tsm->setsm_designation ?></span>
+                <h4 class="testimonial-name"><?= $tsm->setsm_name ?></h4>
+                <span class="testimonial-role"><?= $tsm->setsm_designation ?></span>
 
-                    <p class="testimonial-text flex-grow-1 mt-4">
-                        "<?= $tsm->setsm_quote ?>"
-                    </p>
+                <p class="testimonial-text flex-grow-1 mt-4">
+                    "<?= $tsm->setsm_quote ?>"
+                </p>
 
-                    <div class="testimonial-rating mt-4 pt-4 border-top">
-                        <?php for ($i = 0; $i < $tsm->setsm_rating; $i++) { ?>
-                            <i class="fas fa-star"></i>
-                        <?php } ?>
-                    </div>
+                <div class="testimonial-rating mt-4 pt-4 border-top">
+                    <?php for ($i = 0; $i < $tsm->setsm_rating; $i++) { ?>
+                    <i class="fas fa-star"></i>
+                    <?php } ?>
                 </div>
             </div>
+        </div>
         <?php } ?>
     </div>
 </section>
 <script>
-    function openMail(e) {
-        e.preventDefault();
+function openMail(e) {
+    e.preventDefault();
 
-        var isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+    var isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
 
-        if (isMobile) {
-            // Open Gmail app / default mail app
-            window.location.href = "mailto:suropriyoenterprise@gmail.com";
-        } else {
-            // Open Gmail web in browser
-            window.open("https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com", "_blank");
-        }
+    if (isMobile) {
+        // Open Gmail app / default mail app
+        window.location.href = "mailto:suropriyoenterprise@gmail.com";
+    } else {
+        // Open Gmail web in browser
+        window.open("https://mail.google.com/mail/?view=cm&fs=1&to=suropriyoenterprise@gmail.com", "_blank");
     }
+}
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
